@@ -1,0 +1,51 @@
+.dashboard {
+  min-height: calc(100vh - 70px);
+}
+.dashboard .dashboard-header {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  height: auto;
+  justify-content: space-between;
+}
+
+.dashboard .dashboard-header .header-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+.dashboard .dashboard-header .header-message {
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #A2ADBD;
+  margin-bottom: 10px;
+}
+.dashboard .dashboard-main {
+  margin-top: 20px;
+  height: calc(100vh - 200px);
+  display: flex;
+}
+
+@media screen and (max-width: 550px) {
+  .dashboard .dashboard-main {
+    flex-direction: column;
+  }
+  .dashboard .dashboard-header {
+    flex-direction: column;
+  }
+  .dashboard .dashboard-header .card-main {
+    width: 100%;
+  }
+  .dashboard .dashboard-header .card-main + .card-main {
+    margin-top: 5px;
+  }
+  .dashboard .dashboard-main {
+    width: 100%;
+    height: 100%;
+  }
+
+
+
+
+
+}

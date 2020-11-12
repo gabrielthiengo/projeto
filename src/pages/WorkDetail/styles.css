@@ -1,0 +1,106 @@
+.work-container {
+  background: white;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+}
+
+.work-container .work-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.work-container .work-header h3 {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+.work-container .work-main .work-description {
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  min-height: 250px;
+  margin-bottom: 10px;
+}
+
+.work-container .work-main .work-description h4 {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.work-container .work-main .work-description h5 {
+  font-weight: 500;
+}
+.work-container .work-main .sub-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.work-container .work-main .sub-header .header-container {
+  background: var(--color-input-background);
+  color: var(--color-box-footer);
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  font-size: 1.3rem;
+}
+.work-container .work-main .sub-header .header-container + .header-container {
+  margin-left: 10px;
+}
+.work-container .work-main .work-detail {
+  display: flex;
+}
+.work-container .work-main .work-detail .work-user {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.work-container .work-main .work-detail .work-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  margin-left: 10px;
+  border-radius: 0.5rem;
+}
+.work-container .work-main .work-detail .work-info h5 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.work-container .work-main .work-detail .work-user div h5 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.work-container .work-main .work-detail .work-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.work-container .work-main .work-detail .work-button input {
+  width: 30%;
+  height: 40px;
+}
+.btn {
+  font-size: 1.5rem;
+}
+.avatar {
+  width: 45px;
+  height: 45px;
+  background: rgb(211, 211, 211);
+  border-radius: 50%;
+}
+.works-avatar {
+  width: 45px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

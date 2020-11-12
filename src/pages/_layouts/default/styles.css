@@ -1,0 +1,22 @@
+.wrapper-default {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper-default .content {
+    width: calc(100% - 350px);
+    height: 100%;
+    margin-left: 70px;
+    background: var(--color-background);
+    padding: 1.5rem;
+}
+
+@media screen and (max-width: 1130px) {
+  .wrapper-default .content {
+    width: 100%;
+    padding: 1.5rem;
+    margin-top: 60px;
+  }
+}

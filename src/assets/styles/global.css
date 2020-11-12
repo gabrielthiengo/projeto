@@ -1,0 +1,69 @@
+:root {
+  --color-background: #F8F8FC;
+  --color-primary-lighter: #01a0dd;
+  --color-primary: #2E3A59;
+  --color-primary-header: #3d398f;
+  --color-primary-light: #009879;
+  --color-primary-dark: #3F3D56;
+  --color-primary-darker: #39374E;
+  --color-secundary: #04D361;
+  --color-secundary-dark: #04BF58;
+  --color-title-in-primary: #FFFFFF;
+  --color-text-in-primary: #D4C2FF;
+  --color-text-title: #32264D;
+  --color-text-complement: #57565a;
+  --color-text-base: #2e2b35;
+  --color-line-in-white: #E6E6F0;
+  --color-input-background: #F8F8FC;
+  --color-button-text: #FFFFFF;
+  --color-box-base: #FFFFFF;
+  --color-box-footer: #8d8d8d;
+  --color-border: #DFE0E4;
+  --color-border-input: #d4d5da;
+  --color-header-background: #f6f7f8;
+
+  font-size: 60%;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html, body #root {
+  height: 100vh;
+  font-family: 'Rubik', sans-serif;
+}
+
+body {
+  background: var(--color-background);
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+body, input, button, textarea {
+  font: 500 1.6rem Archivo;
+  color: var(--color-text-base);
+}
+
+.container {
+  width: 90vw;
+  max-width: 700px;
+}
+
+@media (min-width: 700px) {
+  :root {
+      font-size: 62.5%rem;
+  }
+}
+
+.Toastify__toast {
+  border-radius: 0.3rem !important;
+  font-family: 'Poppins' !important;
+}
