@@ -107,7 +107,7 @@ function WorkDetail(props) {
 
         </div>
       ) : (
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '200px' }} >
             <Loader
               type="Oval"
               color="#3F3D56"
