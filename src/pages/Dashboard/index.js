@@ -5,8 +5,6 @@ import { FaPencilRuler, FaArchive, FaWallet, FaRedoAlt } from 'react-icons/fa';
 
 import Card from '~/components/Card';
 import ListJobs from '~/components/ListJobs';
-import Loading from '~/components/Loading';
-
 import './styles.css';
 
 import api from '~/services/api';

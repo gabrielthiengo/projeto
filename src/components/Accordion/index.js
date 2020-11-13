@@ -49,13 +49,15 @@ export default function ControlledAccordions({
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <div className="accordion-title">
-            <div className="accordion-header">
-              <p>{title}</p>
-              <p>{value}</p>
+          <Typography>
+            <div className="accordion-title">
+              <div className="accordion-header">
+                <p>{title}</p>
+                <p>{value}</p>
+              </div>
+              <div className="chips-content">{chips}</div>
             </div>
-            <div className="chips-content">{chips}</div>
-          </div>
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>{children}</Typography>

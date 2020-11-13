@@ -5,8 +5,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { FaExclamationTriangle } from 'react-icons/fa';
-import Loading from  '~/components/Loading';
+import Loader from 'react-loader-spinner';
 
 import { store } from '~/store';
 import api from '~/services/api';
@@ -17,10 +16,8 @@ function WorkDetail(props) {
   const { id } = props.match.params;
   const { token } = store.getState().auth.token;
   const [work, setWork] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     api
       .get(`works/${id}`, {
         headers: {
@@ -30,10 +27,6 @@ function WorkDetail(props) {
       .then(res => {
         setWork(res.data);
       });
-
-      setTimeout(() => {
-        setLoading(false);
-      }, 2500)
   });
 
   return (
@@ -103,7 +96,7 @@ function WorkDetail(props) {
                       <input
                         type="submit"
                         className="btn"
-                        value={loading ? 'Carregando...' : 'Pegar Trabalho'}
+                        value='Pegar Trabalho'
                       />
                     </div>
                   </div>
@@ -111,13 +104,17 @@ function WorkDetail(props) {
               </div>
             );
           })}
-          {loading ? <Loading /> : null}
+
         </div>
       ) : (
-        <div className="empty-data">
-          <FaExclamationTriangle size={40} color="#adb5bd" />
-          <h3>Opss... Houve um erro por aqui! Tente novamente mais tarde.</h3>
-        </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+            <Loader
+              type="Oval"
+              color="#3F3D56"
+              height={30}
+              width={30}
+            />
+          </div>
       )}
     </>
   );

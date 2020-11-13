@@ -23,7 +23,7 @@ function Card({ title, description, icon }) {
 export default Card;
 
 Card.propTypes = {
-  title: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
   description: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };

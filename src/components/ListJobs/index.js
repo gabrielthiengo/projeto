@@ -8,8 +8,6 @@ import CustomChip from '~/components/CustomChip';
 import Loader from 'react-loader-spinner';
 
 import { numberOfLine, formatDate } from '~/utils/functions';
-
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import './styles.css';
 
 function ListJobs({ title, children, data }) {

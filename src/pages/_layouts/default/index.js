@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Navigation from '~/components/Navigation';
 import Sidebar from '~/components/Sidebar';
 
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 import './styles.css';
 
 export default function DefaultLayout({ children }) {
