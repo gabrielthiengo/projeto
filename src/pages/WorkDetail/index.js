@@ -30,7 +30,10 @@ function WorkDetail(props) {
       .then(res => {
         setWork(res.data);
       });
-      setLoading(false);
+
+      setTimeout(() => {
+        setLoading(false);
+      }, 2500)
   });
 
   return (

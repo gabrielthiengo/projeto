@@ -1,6 +1,9 @@
 export const numberOfLine = string => {
-  if (string.length > 255) {
-    string = `${string.substr(0, 255)}...`;
+
+  if (string !== null) {
+    if (string.length > 255) {
+      string = `${string.substr(0, 255)}...`;
+    }
   }
 
   return string;
