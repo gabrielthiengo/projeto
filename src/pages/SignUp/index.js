@@ -1,8 +1,7 @@
-import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { toast } from 'react-toastify';
 import Input from '~components/Input';
@@ -11,12 +10,13 @@ import api from '~/services/api';
 
 import logo from '~/assets/images/Logotipo.svg';
 import history from '~/services/history';
+import { cpfMask, removeMask } from '~/utils/functions';
 import './styles.css';
 
 function SignIn() {
-  const dispatch = useDispatch();
   const formRef = useRef(null);
   const loading = useSelector(state => state.auth.loading);
+  const [cpf, setCpf] = useState('');
 
   async function handleSubmit(data) {
     try {
@@ -53,7 +53,7 @@ function SignIn() {
         email: data.email,
         password: data.password,
         name: data.name,
-        document: data.cpf,
+        document: removeMask(data.cpf),
         phone: data.phone,
       };
 
@@ -70,9 +70,9 @@ function SignIn() {
         });
 
         formRef.current.setErrors(errorMessages);
+      } else {
+        toast.error('Houve um erro ao realizar o cadastro!');
       }
-
-      toast.error('Houve um erro ao realizar o cadastro!');
     }
   }
 
@@ -84,7 +84,13 @@ function SignIn() {
         </div>
         <Form onSubmit={handleSubmit} ref={formRef}>
           <Input name="name" label="Nome Completo" autoComplete="off" />
-          <Input name="cpf" label="Cpf" autoComplete="off" />
+          <Input
+            name="cpf"
+            label="Cpf"
+            value={cpf}
+            autoComplete="off"
+            onChange={e => setCpf(cpfMask(e.target.value))}
+          />
           <Input name="phone" label="Telefone" autoComplete="off" />
 
           <Input name="email" label="E-mail" autoComplete="off" />
