@@ -19,12 +19,9 @@ function Dashboard() {
   const [totalRequests, setTotalRequests] = useState('0');
   const [totalWithdrawal, setTotalWithdrawal] = useState('0');
   const [requests, setRequests] = useState(null);
-  const [loading, setLoading] = useState(true);
   const { token } = store.getState().auth.token;
 
   useEffect(() => {
-    setLoading(true);
-
     api
       .get('wallet', {
         headers: {
@@ -59,8 +56,6 @@ function Dashboard() {
           ? setRequests(null)
           : setRequests(res.data.requests);
       });
-
-      setLoading(false);
   });
 
   return (
@@ -103,7 +98,6 @@ function Dashboard() {
         </ListJobs>
       </main>
 
-      {loading ? <Loading /> : null}
     </div>
   );
 }
