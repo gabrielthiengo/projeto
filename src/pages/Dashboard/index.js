@@ -60,11 +60,8 @@ function Dashboard() {
           : setRequests(res.data.requests);
       });
 
-      setTimeout(() => {
-        setLoading(false);
-      }, 2500)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      setLoading(false);
+  });
 
   return (
     <div className="dashboard">
