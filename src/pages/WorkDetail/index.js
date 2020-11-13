@@ -19,7 +19,7 @@ function WorkDetail(props) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(false);
+    setLoading(true);
     api
       .get(`works/${id}`, {
         headers: {
@@ -29,7 +29,8 @@ function WorkDetail(props) {
       .then(res => {
         setWork(res.data);
       });
-  }, [id, token]);
+      setLoading(false);
+  });
 
   return (
     <>
@@ -106,6 +107,7 @@ function WorkDetail(props) {
               </div>
             );
           })}
+          {!loading ? null : <Loading />}
         </div>
       ) : (
         <div className="empty-data">
