@@ -47,20 +47,20 @@ function SignIn() {
 
       if (data.password !== data.confpass) {
         toast.error('As senhas não são iguais');
+      } else {
+        const body = {
+          email: data.email,
+          password: data.password,
+          name: data.name,
+          document: removeMask(data.cpf),
+          phone: data.phone,
+        };
+
+        api.post('user', body).then(() => {
+          toast.success('Cadastro Realizado com sucesso');
+          history.push('/');
+        });
       }
-
-      const body = {
-        email: data.email,
-        password: data.password,
-        name: data.name,
-        document: removeMask(data.cpf),
-        phone: data.phone,
-      };
-
-      api.post('user', body).then(() => {
-        toast.success('Cadastro Realizado com sucesso');
-        history.push('/');
-      });
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errorMessages = {};
