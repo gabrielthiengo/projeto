@@ -39,7 +39,7 @@ export default function ControlledAccordions({
   };
 
   return (
-    <div className={classes.root}>
+    <div id="accordion" className={classes.root}>
       <Accordion
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}
