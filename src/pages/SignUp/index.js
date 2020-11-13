@@ -1,17 +1,17 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
-import { FaUser, FaLock, FaArrowLeft } from 'react-icons/fa';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInRequest } from '../../store/modules/auth/actions';
 
+import { toast } from 'react-toastify';
+import Input from '~components/Input';
+
+import api from '~/services/api';
+
+import logo from '~/assets/images/Logotipo.svg';
+import history from '~/services/history';
 import './styles.css';
-
-import Wave from '~assets/images/wave.png';
-import Logo from '~assets/images/Logotipo.svg';
-import LoginImage from '~assets/images/undraw_deliveries_131a.svg';
-import InputLogin from '~components/InputLogin';
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -21,23 +21,46 @@ function SignIn() {
   async function handleSubmit(data) {
     try {
       const schema = Yup.object().shape({
-        phone: Yup.string().required('O email é obrigatorio'),
+        name: Yup.string()
+          .min(6, 'Insira seu nome completo')
+          .required('Nome é obrigatório'),
+        cpf: Yup.string()
+          .min(11, 'Cpf Inválido')
+          .required('O cpf é obrigatório'),
+        phone: Yup.string()
+          .min(11, 'Informe com o DDD')
+          .required('O telefone é obrigatório'),
         email: Yup.string()
           .email('Insira um email valido!')
-          .required('O Telefone é obrigatorio'),
+          .required('O email é obrigatorio'),
         password: Yup.string()
           .min(6, 'Mínimo 6 caracteres')
           .required('A senha é obrigatoria'),
-        confpassword: Yup.string()
+        confpass: Yup.string()
           .min(6, 'Mínimo 6 caracteres')
-          .required('A confirmação é obrigatoria'),
+          .required('A senha é obrigatoria'),
       });
 
       await schema.validate(data, {
         abortEarly: false,
       });
 
-      dispatch(signInRequest(data.email, data.password));
+      if (data.password !== data.confpass) {
+        toast.error('As senhas não são iguais');
+      }
+
+      const body = {
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        document: data.cpf,
+        phone: data.phone,
+      };
+
+      api.post('user', body).then(() => {
+        toast.success('Cadastro Realizado com sucesso');
+        history.push('/');
+      });
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errorMessages = {};
@@ -48,71 +71,44 @@ function SignIn() {
 
         formRef.current.setErrors(errorMessages);
       }
+
+      toast.error('Houve um erro ao realizar o cadastro!');
     }
   }
 
   return (
-    <div className="main-container">
-      <img src={Wave} alt="" className="wave" />
-      <div className="container">
-        <div className="img">
-          <img src={LoginImage} alt="" />
+    <div className="signup-content">
+      <div className="signup-container">
+        <div className="signup-logo">
+          <img src={logo} alt="Logo" />
         </div>
+        <Form onSubmit={handleSubmit} ref={formRef}>
+          <Input name="name" label="Nome Completo" autoComplete="off" />
+          <Input name="cpf" label="Cpf" autoComplete="off" />
+          <Input name="phone" label="Telefone" autoComplete="off" />
 
-        <div className="login-content">
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <img className="avatar" src={Logo} alt="" />
-
-            <h2>Entrega JÁ!</h2>
-
-            <InputLogin
-              label="Nome Completo"
-              name="name"
-              type="text"
-              icon={<FaUser />}
-            />
-            <InputLogin
-              label="CPF/CNPJ"
-              name="cpf"
-              type="text"
-              icon={<FaUser />}
-            />
-            <InputLogin
-              label="Telefone"
-              name="phone"
-              type="text"
-              icon={<FaUser />}
-            />
-            <InputLogin
-              label="Email"
-              name="email"
-              type="text"
-              icon={<FaUser />}
-            />
-            <InputLogin
-              label="Senha"
-              type="password"
+          <Input name="email" label="E-mail" autoComplete="off" />
+          <div className="container-password">
+            <Input
               name="password"
-              icon={<FaLock />}
-            />
-            <InputLogin
-              label="Confirmar Senha"
+              label="Senha"
+              autoComplete="off"
               type="password"
-              name="confpassword"
-              icon={<FaLock />}
             />
-            <input
-              type="submit"
-              className="btn"
-              value={loading ? 'Carregando...' : 'Cadastrar'}
+            <Input
+              name="confpass"
+              label="Confirmar Senha"
+              autoComplete="off"
+              type="password"
             />
-            <div className="register-signup">
-              <Link to="/">
-                <FaArrowLeft size={15} /> Voltar
-              </Link>
-            </div>
-          </Form>
-        </div>
+          </div>
+          <br />
+          <input
+            type="submit"
+            className="btn"
+            value={loading ? 'Carregando...' : 'Cadastrar'}
+          />
+        </Form>
       </div>
     </div>
   );

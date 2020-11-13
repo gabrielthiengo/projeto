@@ -70,13 +70,15 @@ function SignIn() {
               name="password"
               icon={<FaLock />}
             />
-
             <Link to="/recovery">Esqueceu a Senha?</Link>
             <input
               type="submit"
               className="btn"
               value={loading ? 'Carregando...' : 'Acessar'}
             />
+            <div className="signup">
+              Novo por aqui?<Link to="/register">Cadastre-se</Link>
+            </div>
           </Form>
         </div>
       </div>

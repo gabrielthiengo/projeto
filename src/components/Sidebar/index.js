@@ -1,33 +1,68 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { FaExclamationTriangle } from 'react-icons/fa';
-import logotipo from '~/assets/images/Logotipo.svg';
+import {
+  FaPencilRuler,
+  FaArchive,
+  FaWallet,
+  FaRedoAlt,
+  FaSignOutAlt,
+  FaCogs,
+  FaHome,
+  FaBars,
+} from 'react-icons/fa';
+
+import { store } from '~/store';
+
 import './styles.css';
 
 function Sidebar() {
-  return (
-    <div className="sidebar-container">
-      <div className="sidebar-header">
-        <img src={logotipo} alt="Logotipo" />
-      </div>
-      <div className="sidebar-content">
-        <img
-          className="avatar"
-          src="https://thumbs.dreamstime.com/b/male-avatar-icon-flat-style-male-user-icon-cartoon-man-avatar-vector-stock-91602735.jpg"
-          alt="Avatar"
-        />
-        <label> Gabriel Thiengo </label>
-        <div className="sidebar-detail">
-          <label>Últimas atividades:</label>
+  const { avatar, name, email } = store.getState().user.profile;
 
-          <div className="activities-empty">
-            <FaExclamationTriangle size={22} />
-            <label>Parece que você não tem atividades!</label>
-          </div>
+  return (
+    <>
+      <div className="navigation-container">
+        <div className="header-options">
+          <Link to="/profile">
+            <FaCogs size={18} />
+          </Link>
+
+          <FaBars size={18} onClick={() => {}} />
         </div>
+        <div className="user-container">
+          <div className="avatar">
+            <img src={avatar} alt="User Avatar" />
+          </div>
+          <p className="user-name">{name}</p>
+          <p>{email}</p>
+        </div>
+
+        <Link to="/dashboard">
+          <FaHome size={15} />
+          <h2>Home</h2>
+        </Link>
+        <Link to="/works">
+          <FaArchive size={15} />
+          <h2>Trabalhos</h2>
+        </Link>
+        <Link to="/dashboard">
+          <FaPencilRuler size={15} />
+          <h2>Tarefas</h2>
+        </Link>
+        <Link to="/dashboard">
+          <FaWallet size={15} />
+          <h2>Carteira</h2>
+        </Link>
+        <Link to="/dashboard">
+          <FaRedoAlt size={15} />
+          <h2>Retiradas</h2>
+        </Link>
+        <Link to="/dashboard">
+          <FaSignOutAlt size={15} />
+          <h2>Sair</h2>
+        </Link>
       </div>
-    </div>
+    </>
   );
 }
 

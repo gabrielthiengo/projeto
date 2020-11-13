@@ -96,6 +96,18 @@ a:hover{
   transition: 0.5s all;
   cursor: pointer;
 }
+.signup {
+  display: flex;
+  font-size: 1.3rem;
+  color: #999;
+  width: 100%;
+  justify-content: flex-end;
+}
+.signup a {
+  color: #2E3A59;
+  font-weight: bold;
+  margin-left: 5px;
+}
 
 @media screen and (max-width: 1440px) {
   .img img {

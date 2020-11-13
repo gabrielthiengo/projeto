@@ -35,7 +35,7 @@ function WorkDetail(props) {
         <div>
           {work.map(workItem => {
             return (
-              <div className="work-container">
+              <div key={workItem.id} className="work-container">
                 <header className="work-header">
                   <h3>{workItem.title}</h3>
                   <h3>{`R$ ${workItem.value}`}</h3>

@@ -6,9 +6,9 @@
 }
 
 .wrapper-default .content {
-    width: calc(100% - 350px);
+    width: calc(100% - 200px);
     height: 100%;
-    margin-left: 70px;
+    margin-left: 200px;
     background: var(--color-background);
     padding: 1.5rem;
 }

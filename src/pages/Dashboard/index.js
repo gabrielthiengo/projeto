@@ -29,10 +29,6 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <label className="header-title">Bem Vindo(a) de volta.</label>
-        <label className="header-message">
-          Esperamos que tenha uma ótima experiência!
-        </label>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <Card
             title={`R$ ${
@@ -42,7 +38,7 @@ function Dashboard() {
             icon={<FaWallet size={25} color="green" />}
           />
           <Card
-            title={response !== null ? response.totalWorks : '0'}
+            title={response !== null ? response.totalWorks : '0.00'}
             description="Seus Trabalhos"
             icon={<FaArchive size={25} color="orange" />}
           />
