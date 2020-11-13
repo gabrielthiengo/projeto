@@ -19,7 +19,7 @@ function Dashboard() {
   const [totalRequests, setTotalRequests] = useState('0');
   const [totalWithdrawal, setTotalWithdrawal] = useState('0');
   const [requests, setRequests] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { token } = store.getState().auth.token;
 
   useEffect(() => {
@@ -104,7 +104,7 @@ function Dashboard() {
         </ListJobs>
       </main>
 
-      {!loading ? null : <Loading />}
+      {loading ? <Loading /> : null}
     </div>
   );
 }

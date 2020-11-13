@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { FaExclamationTriangle } from 'react-icons/fa';
+import Loading from  '~/components/Loading';
 
 import { store } from '~/store';
 import api from '~/services/api';
@@ -107,7 +108,7 @@ function WorkDetail(props) {
               </div>
             );
           })}
-          {!loading ? null : <Loading />}
+          {loading ? <Loading /> : null}
         </div>
       ) : (
         <div className="empty-data">
