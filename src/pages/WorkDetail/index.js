@@ -96,7 +96,7 @@ function WorkDetail(props) {
                       <input
                         type="submit"
                         className="btn"
-                        value='Pegar Trabalho'
+                        value="Pegar Trabalho"
                       />
                     </div>
                   </div>
@@ -104,17 +104,18 @@ function WorkDetail(props) {
               </div>
             );
           })}
-
         </div>
       ) : (
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '200px' }} >
-            <Loader
-              type="Oval"
-              color="#3F3D56"
-              height={30}
-              width={30}
-            />
-          </div>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '200px',
+          }}
+        >
+          <Loader type="Oval" color="#3F3D56" height={30} width={30} />
+        </div>
       )}
     </>
   );

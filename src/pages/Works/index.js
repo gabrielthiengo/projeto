@@ -22,8 +22,7 @@ function Works() {
       .then(res => {
         setWorks(res.data);
       });
-
-  }, [works]);
+  });
 
   return (
     <>

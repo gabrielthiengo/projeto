@@ -1,10 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import './styles.css';
@@ -49,19 +49,15 @@ export default function ControlledAccordions({
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography>
-            <div className="accordion-title">
-              <div className="accordion-header">
-                <p>{title}</p>
-                <p>{value}</p>
-              </div>
-              <div className="chips-content">{chips}</div>
+          <div className="accordion-title">
+            <div className="accordion-header">
+              <label>{title}</label>
+              <label>{value}</label>
             </div>
-          </Typography>
+            <div className="chips-content">{chips}</div>
+          </div>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>{children}</Typography>
-        </AccordionDetails>
+        <AccordionDetails>{children}</AccordionDetails>
       </Accordion>
     </div>
   );

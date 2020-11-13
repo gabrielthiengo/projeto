@@ -129,6 +129,11 @@
   align-items: center;
 }
 
+.accordion-content p {
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
 @media screen and (max-width: 550px) {
   .jobs + .jobs {
     margin-top: 20px;

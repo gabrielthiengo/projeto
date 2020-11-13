@@ -3,9 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FaPlus } from 'react-icons/fa';
+import Loader from 'react-loader-spinner';
 import Accordion from '~/components/Accordion';
 import CustomChip from '~/components/CustomChip';
-import Loader from 'react-loader-spinner';
 
 import { numberOfLine, formatDate } from '~/utils/functions';
 import './styles.css';
@@ -60,12 +60,7 @@ function ListJobs({ title, children, data }) {
         })
       ) : (
         <div className="empty-data">
-          <Loader
-            type="Oval"
-            color="#3F3D56"
-            height={30}
-            width={30}
-          />
+          <Loader type="Oval" color="#3F3D56" height={30} width={30} />
         </div>
       )}
     </div>
