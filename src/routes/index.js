@@ -4,21 +4,21 @@ import Route from './Route';
 import Signin from '../pages/SignIn';
 import Signup from '../pages/SignUp';
 
-import Dashboard from '../pages/Dashboard';
+import Home from '../pages/Home';
+import ProductShow from '../pages/Product';
 import Profile from '../pages/Profile';
-import Works from '../pages/Works';
-import WorkDetail from '../pages/WorkDetail';
+import Stores from '../pages/Stores';
 
 export default function Routes() {
   return (
     <Switch>
-      <Route path="/" exact component={Signin} />
+      <Route path="/signin" component={Signin} />
       <Route path="/register" component={Signup} />
+      <Route path="/" exact component={Home} />
+      <Route path="/product" component={ProductShow} />
+      <Route path="/store" component={Stores} />
 
       <Route path="/profile" component={Profile} isPrivate />
-      <Route path="/dashboard" component={Dashboard} isPrivate />
-      <Route path="/works" component={Works} isPrivate />
-      <Route path="/work-detail/:id" component={WorkDetail} isPrivate />
     </Switch>
   );
 }

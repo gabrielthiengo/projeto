@@ -52,8 +52,8 @@ a{
 	text-decoration: none;
 	color: #999;
 	font-size: 1.2rem;
-    transition: .3s;
-    font-family: 'Rubik', sans-serif;;
+  transition: .3s;
+  font-family: 'Roboto', sans-serif;;
 }
 
 a:hover{

@@ -1,0 +1,104 @@
+.navbar {
+  width: 100%;
+  height: 60px;
+  background: var(--color-primary);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--color-secundary);
+  z-index: 11;
+}
+.navbar-content {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar-content h2 {
+  color: #fff;
+}
+.navbar-content #logo {
+  width: 300px;
+  height: 300px;
+}
+.navbar-content .navigation {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: 0.3s;
+}
+.navbar-content .navigation a {
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.navbar-content .navigation a:hover {
+  color: var(--color-secundary) !important;
+}
+.navbar-content .icons {
+  width: auto;
+  color: #fff;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.navbar-content .icons svg,
+.navbar-content .icons a {
+  color: #fff;
+  transition: 0.3s;
+}
+.navbar-content .icons svg:hover,
+.navbar-content .icons a:hover {
+  color: var(--color-secundary) !important;
+  cursor: pointer;
+}
+.navbar-detail {
+  margin-top: 60px;
+  width: 100%;
+  height: calc(100% - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.icons svg {
+  margin-right: 20px;
+}
+#bars {
+  display: none;
+}
+.navigation-drawer {
+  width: 230px;
+  height: 100%;
+  padding: 4rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-primary);
+}
+.navigation-drawer a {
+  font-size: 1.6rem;
+  padding: 1.5rem;
+  width: 90%;
+  text-align: center;
+  color: #fff;
+  margin-top: 10px;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+.navigation-drawer a:hover {
+  background: rgb(8, 57, 105) !important;
+  color: rgb(243, 243, 243) !important;
+}
+@media (max-width: 950px) {
+  .navbar-content .navigation {
+    display: none;
+  }
+  #bars {
+    display: block;
+  }
+}

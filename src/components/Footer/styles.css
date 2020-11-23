@@ -1,0 +1,28 @@
+.footer-container {
+  width: 100%;
+  min-height: 250px;
+  background: var(--color-primary-light);
+  border-top: 2px solid var(--color-secundary);
+  color: #fff;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-container .footer-content {
+  width: 80%;
+}
+.footer-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.footer-item svg {
+  margin-right: 5px;
+}
+.footer-item h5 {
+  font-size: 1.5rem;
+}
+h2 + .footer-item {
+  margin-top: 10px;
+}

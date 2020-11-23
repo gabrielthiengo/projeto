@@ -1,29 +1,38 @@
 :root {
-  --color-background: #F8F8FC;
-  --color-primary-lighter: #01a0dd;
-  --color-primary: #2E3A59;
-  --color-primary-header: #3d398f;
-  --color-primary-light: #009879;
-  --color-primary-dark: #3F3D56;
-  --color-primary-darker: #39374E;
-  --color-secundary: #04D361;
-  --color-secundary-dark: #04BF58;
+  --color-background: white;
+
+  --color-primary:  rgb(7, 50, 92);
+  --color-primary-light:rgb(7, 50, 92, 0.8);
+  --color-primary-lighter: #35b6bd;
+  --color-primary-dark: #185255;
+  --color-primary-darker: #1f6c70;
+
+  --color-primary-header: #fff;
+  --color-header-background: #121214;
+
+  --color-secundary: #ec7646;
+  --color-secundary-darker: #bd5d37;
+  --color-secundary-dark: #a3a076;
+
+  --color-optional-one: #E8896C;
+  --color-optional-two: #5C1B0C;
+  --color-optional-three: #94BCD9;
+
   --color-title-in-primary: #FFFFFF;
   --color-text-in-primary: #D4C2FF;
   --color-text-title: #32264D;
-  --color-text-complement: #57565a;
-  --color-text-base: #2e2b35;
+  --color-text-complement: #9e9e9e;
+  --color-text-base: #3f3c46;
   --color-line-in-white: #E6E6F0;
   --color-input-background: #F8F8FC;
   --color-button-text: #FFFFFF;
   --color-box-base: #FFFFFF;
   --color-box-footer: #8d8d8d;
-  --color-border: #DFE0E4;
+  --color-border: #e2e2e2;
   --color-border-input: #d4d5da;
-  --color-header-background: #f6f7f8;
+
 
   font-size: 60%;
-
 }
 
 * {
@@ -34,12 +43,13 @@
 }
 
 html, body #root {
-  height: 100vh;
-  font-family: 'Rubik', sans-serif;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased !important;
 }
 
 body {
-  background: var(--color-background);
+  background: white;
 }
 
 #root {
@@ -48,7 +58,7 @@ body {
 }
 
 body, input, button, textarea {
-  font: 500 1.6rem Archivo;
+  font: 500 1.6rem Roboto;
   color: var(--color-text-base);
 }
 
@@ -65,5 +75,13 @@ body, input, button, textarea {
 
 .Toastify__toast {
   border-radius: 0.3rem !important;
-  font-family: 'Poppins' !important;
+  font-family: 'Roboto' !important;
+}
+
+.wrapper-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

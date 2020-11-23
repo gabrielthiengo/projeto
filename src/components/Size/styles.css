@@ -1,0 +1,18 @@
+.size-container {
+  display: flex;
+}
+.size-container .size {
+  padding: 1rem;
+  border-radius: 3px;
+  background: rgb(248, 248, 248);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.size-container .size + .size {
+  margin-left: 3px;
+}
+.size-container .size:hover {
+  background: var(--color-secundary);
+  color: #ffff;
+}
