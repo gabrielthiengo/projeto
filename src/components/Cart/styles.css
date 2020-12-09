@@ -1,12 +1,15 @@
+.MuiDrawer-paperAnchorLeft {
+  background: rgb(7,50,92) !important;
+  background: linear-gradient(180deg, rgba(7,50,92,1) 0%, rgba(12,94,173,1) 56%, rgba(11,109,204,1) 97%) !important;
+}
 .cart-container {
-  width: 100%;
+  width: 300px;
   display: flex;
   align-items: center;
-  min-height: 400px;
-  max-height: 400px;
   flex-direction: column;
   padding-top: 20px;
   margin-bottom: 20px !important;
+  color: #fff;
 }
 .cart-container .cart-content {
   width: 80%;
@@ -14,20 +17,43 @@
   height: auto;
   margin-top: 10px;
   display: flex;
+  flex-direction: column;
 }
 .cart-container .cart-content .cart-products {
   width: 100%;
   margin-top: 10px;
   transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .cart-container .cart-content .cart-checkout {
-  width: 80%;
+  width: 100%;
   padding: 1rem;
   margin-top: 10px;
   border: 1px solid var(--color-border);
   border-radius: 3px;
   transition: 0.3s;
-  margin-left: 10px;
+  background: #fff;
+  color: #000;
+  order: -1;
+}
+.cart-container .cart-content .cart-checkout-empty {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  transition: 0.3s;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  order: -1;
+}
+.cart-container .cart-content .cart-checkout-empty h4 {
+  color: rgb(238, 238, 238);
 }
 .cart-container .cart-content .cart-checkout #checkout {
   background: var(--color-primary);
@@ -36,15 +62,21 @@
 }
 .cart-container .cart-content .cart-products .product-item {
   display: flex;
+  flex-direction: column;
   border: 1px solid var(--color-border);
   width: auto;
   padding: 1rem;
   border-radius: 3px;
+  width: 100%;
+  background: #fff;
+  color: rgb(44, 44, 44);
+}
+.cart-container .cart-content .cart-products .product-item .product-item-detail h2 {
+  font-size: 1.7rem;
 }
 .cart-container .cart-content .cart-products .product-item .product-item-detail {
-  margin-left: 10px;
+  margin-top: 10px;
   padding-left: 10px;
-  border-left: 1px solid var(--color-border);
 }
 .cart-container .cart-content .cart-products .product-item + .product-item {
   margin-top: 10px;

@@ -1,15 +1,12 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
-import { FaUser, FaLock } from 'react-icons/fa';
+import { FaUser, FaLock, FaLongArrowAltLeft } from 'react-icons/fa';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInRequest } from '../../store/modules/auth/actions';
 
 import './styles.css';
-import Wave from '~assets/images/wave.png';
-import Logo from '~assets/images/Logotipo.svg';
-import LoginImage from '~assets/images/login-image.svg';
 import InputLogin from '~components/InputLogin';
 
 function SignIn() {
@@ -47,37 +44,59 @@ function SignIn() {
   }
 
   return (
-    <div className="main-container">
-      <img src={Wave} alt="" className="wave" />
-      <div className="container">
-        <div className="img">
-          <img src={LoginImage} alt="" />
+    <div className="wrapper-container">
+      <div className="container w3-animate-left">
+        <div className="devstore">
+          <header className="dev-header">
+            <h1>DEVSTORE</h1>
+          </header>
+          <div className="dev-content">
+            <h2>
+              Faça login ou cadastre-se para ficar por dentro de todas as
+              novidades.
+            </h2>
+          </div>
         </div>
-
         <div className="login-content">
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <img className="login-avatar" src={Logo} alt="" />
+            <div className="arrow-back">
+              <Link to="/">
+                <FaLongArrowAltLeft size={20} />
+                <h3>Voltar para home</h3>
+              </Link>
+            </div>
             <InputLogin
               id="mail"
               label="Email"
               name="email"
-              icon={<FaUser />}
+              icon={<FaUser size={15} />}
             />
             <InputLogin
               id="senha"
               label="Senha"
               type="password"
               name="password"
-              icon={<FaLock />}
+              icon={<FaLock size={15} />}
             />
-            <Link to="/recovery">Esqueceu a Senha?</Link>
+            <Link className="recovery-pass a" to="/recovery">
+              Esqueceu a Senha?
+            </Link>
+            <br />
+
             <input
+              style={{ width: '100%' }}
               type="submit"
-              className="btn"
+              className="btn-def"
               value={loading ? 'Carregando...' : 'Acessar'}
             />
+
+            <br />
+
             <div className="signup">
-              Novo por aqui?<Link to="/register">Cadastre-se</Link>
+              Novo por aqui?
+              <Link className="a" to="/register">
+                Cadastre-se
+              </Link>
             </div>
           </Form>
         </div>

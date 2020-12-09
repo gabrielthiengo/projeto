@@ -41,9 +41,9 @@ const InputLogin = ({ name, label, icon, id, ...rest }) => {
       <div
         className="input-div one"
         id={id}
-        style={error && { borderBottom: '2px solid red' }}
+        style={error && { borderBottom: '2px solid rgb(247, 113, 113)' }}
       >
-        <div className="i" style={error && { color: 'red' }}>
+        <div className="i" style={error && { color: 'rgb(247, 113, 113)' }}>
           {icon}
         </div>
         <div>

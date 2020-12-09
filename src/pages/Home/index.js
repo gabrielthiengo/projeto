@@ -1,200 +1,160 @@
-import React, { useRef } from 'react';
-import { Form } from '@unform/web';
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { Form } from '@unform/web';
+import * as Yup from 'yup';
 
-import { FaTags, FaBook, FaMusic, FaAward, FaSync } from 'react-icons/fa';
-
-import Input from '~/components/Input';
-import Background from '~/components/Background';
+import { Pagination } from '@material-ui/lab';
 import Navbar from '~/components/Navbar';
 import Product from '~/components/Product';
 import Footer from '~/components/Footer';
-import Card from '~/components/Card';
+import Input from '~components/Input';
+
+import api from '~/services/api';
+import { store } from '~/store';
 
 import './styles.css';
 
 function Home() {
-  const formRef = useRef();
+  const [products, setProducts] = useState([]);
+  const [currPage, setCurrPage] = useState(1);
+  const [filtered, setFiltered] = useState(false);
+  const [totalPage, setTotalPage] = useState(0);
+  const { signed } = store.getState().auth;
+  const formRef = useRef(null);
+
+  useLayoutEffect(() => {
+    async function loadProducts() {
+      window.scrollTo(0, 0);
+      const response = await api.get(`product/${currPage}`);
+      setProducts(response.data.data);
+      setTotalPage(response.data.lastPage);
+    }
+
+    if (!filtered) {
+      loadProducts();
+    }
+  }, [filtered]);
+
+  function handleChangePage(event, value) {
+    setCurrPage(value);
+  }
+
+  async function handleSelectFilter(data) {
+    try {
+      const schema = Yup.object().shape({
+        name: Yup.string().required('Informe um nome'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      const response = await api.get(`filter-products/${data.name}`);
+
+      setFiltered(true);
+      setProducts(response.data.product);
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errorMessages = {};
+
+        err.inner.forEach(error => {
+          errorMessages[error.path] = error.message;
+        });
+
+        formRef.current.setErrors(errorMessages);
+      }
+    }
+  }
+
   return (
     <div className="wrapper-container">
       <Navbar />
-      <Background />
 
-      <div className="header-detail">
-        <h2>What is Lorem Ipsum?</h2>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industrys standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </p>
-      </div>
-
-      <div className="home-container">
-        <div className="home-header">
-          <Card title="Roupa" description="PageMaker including versions">
-            <FaTags size={60} color="rgb(255, 100, 106)" />
-          </Card>
-          <Card title="Livro" description="PageMaker including versions">
-            <FaBook size={60} color="#969ed2" />
-          </Card>
-          <Card title="Música" description="PageMaker including versions">
-            <FaMusic size={60} color="#db1414" />
-          </Card>
-          <Card title="Acessório" description="PageMaker including versions">
-            <FaAward size={60} color="#ec7646" />
-          </Card>
-          <Card title="Outros" description="PageMaker including versions">
-            <FaSync size={60} color="rgb(7, 56, 104)" />
-          </Card>
-        </div>
-        <div className="home-content">
-          <div className="filter">
-            <h4>Filtrar por:</h4>
-            <div className="filter-wrapper">
-              <Form ref={formRef}>
-                <Input label="Produto:" name="product" autoComplete="off" />
-                <Input label="Categoria:" name="category" autoComplete="off" />
-                <Input label="Preço mínimo:" name="min" autoComplete="off" />
+      <main>
+        <section className="home-section">
+          <div className="section-header w3-animate-left">
+            <h1>
+              Temos os melhores produtos para o DEV<b>.</b>
+            </h1>
+          </div>
+          {!signed && (
+            <div className="section-subheader w3-animate-left">
+              <p>
+                Faça login ou cadastre-se para ficar por dentro de todas as
+                novidades.
+              </p>
+              <Link to="/signin" className="btn-def">
+                JUNTE-SE A NÓS
+              </Link>
+            </div>
+          )}
+          <div className="section-filter">
+            <Form ref={formRef} onSubmit={handleSelectFilter}>
+              <div className="form-input">
                 <Input
-                  label="Preço máximo:"
-                  name="product"
+                  name="name"
+                  label="Nome"
                   autoComplete="off"
+                  type="text"
                 />
-              </Form>
+                <Input
+                  name="category"
+                  label="Categoria"
+                  autoComplete="off"
+                  type="text"
+                />
+                <Input
+                  name="min_price"
+                  label="Preço Mínimo"
+                  autoComplete="off"
+                  type="text"
+                />
+                <Input
+                  name="max_price"
+                  label="Preço Máximo"
+                  autoComplete="off"
+                  type="text"
+                />
+              </div>
+              <div className="filter-bottom">
+                <button
+                  className="btn-def-secondary-small"
+                  type="button"
+                  style={{ marginRight: '10px' }}
+                  onClick={() => {
+                    setFiltered(false);
+                  }}
+                >
+                  Limpar
+                </button>
+                <button className="btn-def-small" type="submit">
+                  Filtrar
+                </button>
+              </div>
+            </Form>
+          </div>
+          <div className="section-body w3-animate-bottom">
+            <div className="section-title">
+              <div className="css-line" />
+              <h3>Produtos que possam te interessar:</h3>
+            </div>
+            <div className="section-content">
+              {products.map(product => {
+                return <Product key={product.id} product={product} />;
+              })}
+            </div>
+
+            <div className="pagination">
+              <Pagination
+                onChange={handleChangePage}
+                count={totalPage}
+                shape="rounded"
+              />
             </div>
           </div>
-          <div className="list-products">
-            <Link to="/product">
-              <Product
-                title="Camisa Croácia"
-                image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-                price="R$ 149,90"
-                store="Netshoes"
-              />
-            </Link>
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-            <Product
-              title="Camisa Croácia"
-              image="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-              price="R$ 149,90"
-              store="Netshoes"
-            />
-          </div>
-        </div>
-      </div>
+        </section>
+      </main>
       <Footer />
     </div>
   );

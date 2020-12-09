@@ -1,25 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import { FaRegHeart, FaPlusCircle } from 'react-icons/fa';
 import './styles.css';
 
-function Product({ title, image, price, store }) {
+function Product({ product }) {
   return (
-    <div className="product-container">
-      <img src={image} alt="Imagem" />
-
-      <h3>{title}</h3>
-      <h4>{price}</h4>
-
-      <div className="product-footer">
-        <h5>{store}</h5>
-        <div className="product-icons">
-          <FaRegHeart color="red" />
-          <FaPlusCircle color="green" />
+    <Link
+      to={`/product/${product.id}`}
+      className={`${
+        product.novelty === true ? 'product-link-new' : 'product-link'
+      }`}
+    >
+      <div className="product-image">
+        <img src={product.photo_url} alt="Foto Produto" />
+        <div className="product-content">
+          <h3>{product.title}</h3>
+          <span>{product.short_description}</span>
+          <h2>R$ {product.price.toFixed(2)}</h2>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
 export default Product;
+
+Product.propTypes = {
+  product: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
