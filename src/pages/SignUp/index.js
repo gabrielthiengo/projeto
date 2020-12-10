@@ -11,7 +11,6 @@ import Input from '~components/Input';
 import api from '~/services/api';
 
 import history from '~/services/history';
-import { removeMask } from '~/utils/functions';
 import './styles.css';
 
 function SignIn() {
@@ -53,7 +52,9 @@ function SignIn() {
         };
 
         api.post('user', body).then(() => {
-          toast.success('Cadastro Realizado com sucesso');
+          toast.success(
+            `Cadastro Realizado com sucesso! Uma confirmação foi enviada para o email ${data.email}`
+          );
           history.push('/signin');
         });
       }

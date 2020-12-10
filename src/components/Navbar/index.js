@@ -99,7 +99,7 @@ function Navbar() {
             ) : (
               <Link to="/signin">ENTRAR</Link>
             )}
-            {signed && <Link to="/">MINHA CONTA</Link>}
+            {signed && <Link to="/profile">MINHA CONTA</Link>}
             <Link to="/">SAIR</Link>
           </div>
         </div>
@@ -193,10 +193,18 @@ function Navbar() {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>Favoritos</MenuItem>
-          <MenuItem onClick={handleClose}>Minhas Compras</MenuItem>
-          <MenuItem onClick={handleClose}>Minha Conta</MenuItem>
-          <MenuItem onClick={handleClose}>Sair</MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Link to="/">Favoritos</Link>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Link to="/">Minhas Compras</Link>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Link to="/profile">Minha Conta</Link>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Link to="/">Sair</Link>
+          </MenuItem>
         </Menu>
       </div>
     </div>

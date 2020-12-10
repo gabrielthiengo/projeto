@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
 import { Pagination } from '@material-ui/lab';
+import Loader from 'react-loader-spinner';
 import Navbar from '~/components/Navbar';
 import Product from '~/components/Product';
 import Footer from '~/components/Footer';
@@ -20,10 +21,12 @@ function Home() {
   const [currPage, setCurrPage] = useState(1);
   const [filtered, setFiltered] = useState(false);
   const [totalPage, setTotalPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const { signed } = store.getState().auth;
   const formRef = useRef(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    setIsLoading(true);
     async function loadProducts() {
       window.scrollTo(0, 0);
       const response = await api.get(`product/${currPage}`);
@@ -34,6 +37,7 @@ function Home() {
     if (!filtered) {
       loadProducts();
     }
+    setIsLoading(false);
   }, [filtered]);
 
   function handleChangePage(event, value) {
@@ -89,7 +93,7 @@ function Home() {
               </Link>
             </div>
           )}
-          <div className="section-filter">
+          <div className="section-filter w3-animate-right">
             <Form ref={formRef} onSubmit={handleSelectFilter}>
               <div className="form-input">
                 <Input
@@ -139,19 +143,38 @@ function Home() {
               <div className="css-line" />
               <h3>Produtos que possam te interessar:</h3>
             </div>
-            <div className="section-content">
-              {products.map(product => {
-                return <Product key={product.id} product={product} />;
-              })}
-            </div>
+            {!isLoading ? (
+              <>
+                <div className="section-content">
+                  {products.map(product => {
+                    return <Product key={product.id} product={product} />;
+                  })}
+                </div>
 
-            <div className="pagination">
-              <Pagination
-                onChange={handleChangePage}
-                count={totalPage}
-                shape="rounded"
-              />
-            </div>
+                <div className="pagination">
+                  <Pagination
+                    onChange={handleChangePage}
+                    count={totalPage}
+                    shape="rounded"
+                  />
+                </div>
+              </>
+            ) : (
+              <div
+                style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  marginTop: '70px',
+                }}
+              >
+                <Loader
+                  type="Oval"
+                  color="rgb(147, 130, 215)"
+                  height={50}
+                  width={100}
+                />
+              </div>
+            )}
           </div>
         </section>
       </main>

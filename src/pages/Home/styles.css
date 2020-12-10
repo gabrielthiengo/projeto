@@ -60,7 +60,7 @@
 .form-input {
   display: flex;
 }
-.section-filter form .input-content + .input-content {
+.section-filter form .form-input .input-content + .input-content {
   margin-top: 0px;
   margin-left: 10px;
 }
@@ -162,10 +162,10 @@
     max-width: 100%;
     text-align: center;
   }
-  .section-filter form {
+  .section-filter form .form-input {
     flex-direction: column;
   }
-  .section-filter form .input-content + .input-content {
+  .section-filter form .form-input .input-content + .input-content {
     margin-top: 10px;
     margin-left: 0px;
   }

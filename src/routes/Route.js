@@ -8,10 +8,15 @@ import { store } from '~/store';
 export default function RouteWrapper({
   component: Component,
   isPrivate,
+  isRegister,
   ...rest
 }) {
   const { signed } = store.getState().auth;
   if (!signed && isPrivate) {
+    return <Redirect to="/" />;
+  }
+
+  if (signed && isRegister) {
     return <Redirect to="/" />;
   }
 
@@ -29,10 +34,12 @@ export default function RouteWrapper({
 
 RouteWrapper.propTypes = {
   isPrivate: PropTypes.bool,
+  isRegister: PropTypes.bool,
   component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     .isRequired,
 };
 
 RouteWrapper.defaultProps = {
   isPrivate: false,
+  isRegister: false,
 };

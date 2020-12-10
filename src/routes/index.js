@@ -11,8 +11,8 @@ import Profile from '../pages/Profile';
 export default function Routes() {
   return (
     <Switch>
-      <Route path="/signin" component={Signin} />
-      <Route path="/register" component={Signup} />
+      <Route path="/signin" component={Signin} isRegister />
+      <Route path="/register" component={Signup} isRegister />
       <Route path="/" exact component={Home} />
       <Route path="/product/:id" component={ProductShow} />
 
