@@ -77,6 +77,12 @@ function Home() {
 
       <main>
         <section className="home-section">
+          <div className="banner w3-animate-opacity">
+            <img
+              src="https://www.lojavirtual.com.br/wp-content/uploads/2018/10/banner03.jpg"
+              alt="Banner"
+            />
+          </div>
           <div className="section-header w3-animate-left">
             <h1>
               Temos os melhores produtos para o DEV<b>.</b>

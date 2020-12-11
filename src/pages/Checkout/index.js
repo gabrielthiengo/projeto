@@ -7,7 +7,7 @@ import './styles.css';
 function Checkout() {
   return (
     <div className="wrapper-container">
-      <Navbar />;
+      <Navbar />
     </div>
   );
 }

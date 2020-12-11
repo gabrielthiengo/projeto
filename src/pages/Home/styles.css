@@ -1,10 +1,21 @@
 .home-section {
-  padding-top: 120px;
+  padding-top: 90px;
 }
 .wrapper-container main {
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
+}
+.banner {
+  width: 100%;
+  margin-bottom: 40px;
+  border: 1px solid var(--color-primary);
+  padding: 10px;
+  border-radius: 5px;
+}
+.banner img {
+  width: 100%;
+  border-radius: 5px;
 }
 .section-header {
   width: 100%;
