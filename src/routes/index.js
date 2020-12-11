@@ -7,6 +7,8 @@ import Signup from '../pages/SignUp';
 import Home from '../pages/Home';
 import ProductShow from '../pages/Product';
 import Profile from '../pages/Profile';
+import Checkout from '../pages/Checkout';
+import Recovery from '../pages/Recovery';
 
 export default function Routes() {
   return (
@@ -15,6 +17,8 @@ export default function Routes() {
       <Route path="/register" component={Signup} isRegister />
       <Route path="/" exact component={Home} />
       <Route path="/product/:id" component={ProductShow} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/recovery" component={Recovery} />
 
       <Route path="/profile" component={Profile} isPrivate />
     </Switch>
