@@ -28,6 +28,7 @@ function ProductShow() {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [size, setSize] = useState('');
+  const [color, setColor] = useState('');
   const [imageState, setImageState] = useState('');
   const [productList, setProductList] = useState([]);
 
@@ -39,23 +40,29 @@ function ProductShow() {
       setProductList(response.data.product_list.data);
 
       if (imageState === '') {
-        setImageState(response.data.product.photo_url);
+        setImageState(response.data.product.photo_cover);
       }
     }
 
     loadProduct();
   }, []);
 
-  const handleChange = event => {
+  const handleChangeSize = event => {
     setSize(event.target.value);
+  };
+
+  const handleChangeColor = event => {
+    setColor(event.target.value);
   };
 
   function handleAddProductToCart() {
     if (product?.size !== null) {
-      if (size !== '') {
-        dispatch(addProductToCart(product, 1, size));
-      } else {
+      if (size === '') {
         toast.error('Informe um tamanho');
+      } else if (color === '') {
+        toast.error('Informe uma cor');
+      } else {
+        dispatch(addProductToCart(product, 1, size, color));
       }
     }
   }
@@ -74,17 +81,25 @@ function ProductShow() {
               <img src={imageState} alt="Foto Produto" />
               <div className="image-list">
                 <img
-                  src="https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg"
-                  onClick={() =>
-                    setImageState(
-                      'https://imgcentauro-a.akamaihd.net/900x900/949367OX/camisa-selecao-da-croacia-ii-20-21-nike-masculina-img.jpg'
-                    )
-                  }
+                  src={product.photo_cover}
+                  onClick={() => setImageState(product.photo_cover)}
                   alt="Foto Produto"
                 />
-                <img src={product.photo_url} alt="Foto Produto" />
-                <img src={product.photo_url} alt="Foto Produto" />
-                <img src={product.photo_url} alt="Foto Produto" />
+                <img
+                  src={product.photo_one}
+                  onClick={() => setImageState(product.photo_one)}
+                  alt="Foto Produto"
+                />
+                <img
+                  src={product.photo_two}
+                  onClick={() => setImageState(product.photo_two)}
+                  alt="Foto Produto"
+                />
+                <img
+                  src={product.photo_three}
+                  onClick={() => setImageState(product.photo_three)}
+                  alt="Foto Produto"
+                />
               </div>
             </div>
 
@@ -93,14 +108,20 @@ function ProductShow() {
               <p>{product.full_description}</p>
 
               <h2>Tamanho:</h2>
-              <Select value={size} onChange={handleChange}>
+              <Select value={size} onChange={handleChangeSize}>
                 <MenuItem value="P">P</MenuItem>
                 <MenuItem value="M">M</MenuItem>
                 <MenuItem value="G">G</MenuItem>
                 <MenuItem value="GG">GG</MenuItem>
               </Select>
-              <h2>Rating:</h2>
-              <Rating readOnly value={4} />
+
+              <h2>Cores:</h2>
+              <Select value={color} onChange={handleChangeColor}>
+                <MenuItem value="PRETO">PRETO</MenuItem>
+                <MenuItem value="BRANCO">BRANCO</MenuItem>
+                <MenuItem value="VERMELHO">VERMELHO</MenuItem>
+                <MenuItem value="AMARELO">AMARELO</MenuItem>
+              </Select>
 
               <h4>R$ {product.price?.toFixed(2)}</h4>
 

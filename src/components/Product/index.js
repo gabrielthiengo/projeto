@@ -13,7 +13,7 @@ function Product({ product }) {
       }`}
     >
       <div className="product-image">
-        <img src={product.photo_url} alt="Foto Produto" />
+        <img src={product.photo_cover} alt="Foto Produto" />
         <div className="product-content">
           <h3>{product.title}</h3>
           <span>{product.short_description}</span>

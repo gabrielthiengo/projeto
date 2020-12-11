@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -46,13 +48,15 @@ function Navbar() {
           <h1>DEVSTORE</h1>
         </Link>
         <div className="navbar-content">
-          <FaShoppingCart
-            id="cart"
-            style={{ cursor: 'pointer' }}
-            size={25}
-            color="#fff"
-            onClick={toggleDrawer('bottom', true)}
-          />
+          <div onClick={toggleDrawer('bottom', true)}>
+            <FaShoppingCart
+              id="cart"
+              style={{ cursor: 'pointer' }}
+              size={25}
+              color="#fff"
+            />
+            {cart.length > 0 && <div className="item-count">{cart.length}</div>}
+          </div>
 
           {signed ? (
             <Button
@@ -124,6 +128,7 @@ function Navbar() {
                       <th>PRODUTO</th>
                       <th id="actions">QTD.</th>
                       <th id="actions">TAM.</th>
+                      <th id="actions">COR</th>
                       <th>SUBTOTAL</th>
                       <th id="actions">AÇÕES</th>
                     </tr>
@@ -131,16 +136,17 @@ function Navbar() {
                   <tbody>
                     {cart.map(carts => {
                       return (
-                        <tr key={carts.product.id}>
+                        <tr key={carts.product.code}>
                           <td>{carts.product.title}</td>
-                          <td id="actions">{carts.quantity}</td>
-                          <td id="actions">{carts.size}</td>
+                          <td id="actions">{carts.product.quantity}</td>
+                          <td id="actions">{carts.product.size}</td>
+                          <td id="actions">{carts.product.color}</td>
                           <td>R$ {carts.product.price?.toFixed(2)}</td>
                           <td id="actions">
                             <FaTrash
                               onClick={() => {
                                 dispatch(
-                                  removeProductFromCart(carts.product.id)
+                                  removeProductFromCart(carts.product.code)
                                 );
                               }}
                             />

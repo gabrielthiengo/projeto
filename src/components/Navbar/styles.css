@@ -204,6 +204,23 @@
   flex-direction: column;
   overflow: auto;
 }
+.item-count {
+  font-weight: bold;
+  background: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1rem;
+  width: 15px;
+  height: 15px;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  margin-top: 20px;
+  margin-left: 15px;
+  cursor: pointer;
+}
 .cart-empty {
   display: flex;
   flex-direction: column;

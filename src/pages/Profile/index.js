@@ -17,10 +17,12 @@ import './styles.css';
 export default function Profile() {
   const dispatch = useDispatch();
   const profile = useSelector(state => state.user.profile);
-  const [zipCode, setZipCode] = useState(cepMask(profile.address.zip_code));
+  const [zipCode, setZipCode] = useState('');
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (profile.address.zip_code !== null)
+      setZipCode(cepMask(profile.address.zip_code));
   });
 
   function handleSubmit(data) {

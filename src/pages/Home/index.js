@@ -27,8 +27,15 @@ function Home() {
 
   useEffect(() => {
     setIsLoading(true);
-    async function loadProducts() {
+    if (products.length === 0) {
       window.scrollTo(0, 0);
+    }
+
+    if (products.length > 0) {
+      window.scrollTo(0, 700);
+    }
+
+    async function loadProducts() {
       const response = await api.get(`product/${currPage}`);
       setProducts(response.data.data);
       setTotalPage(response.data.lastPage);
@@ -38,7 +45,7 @@ function Home() {
       loadProducts();
     }
     setIsLoading(false);
-  }, [filtered]);
+  }, [filtered, currPage]);
 
   function handleChangePage(event, value) {
     setCurrPage(value);

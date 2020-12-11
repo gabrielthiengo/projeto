@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
+import Loader from 'react-loader-spinner';
 import Input from '~components/Input';
 
 import api from '~/services/api';
@@ -15,16 +15,17 @@ import './styles.css';
 
 function SignIn() {
   const formRef = useRef(null);
-  const loading = useSelector(state => state.auth.loading);
+  const [isLoading, setLoading] = useState(false);
 
   async function handleSubmit(data) {
+    setLoading(true);
     try {
       const schema = Yup.object().shape({
         name: Yup.string()
           .min(6, 'Insira seu nome completo')
           .required('Nome é obrigatório'),
         phone: Yup.string()
-          .min(11, 'Informe com o DDD')
+          .min(10, 'Informe com o DDD')
           .required('O telefone é obrigatório'),
         email: Yup.string()
           .email('Insira um email valido!')
@@ -42,6 +43,7 @@ function SignIn() {
       });
 
       if (data.password !== data.confpass) {
+        setLoading(false);
         toast.error('As senhas não são iguais');
       } else {
         const body = {
@@ -51,14 +53,22 @@ function SignIn() {
           phone: data.phone,
         };
 
-        api.post('user', body).then(() => {
-          toast.success(
-            `Cadastro Realizado com sucesso! Uma confirmação foi enviada para o email ${data.email}`
-          );
-          history.push('/signin');
-        });
+        api
+          .post('user', body)
+          .then(() => {
+            toast.success(
+              `Cadastro Realizado com sucesso! Uma confirmação foi enviada para o email ${data.email}`
+            );
+            history.push('/signin');
+          })
+          .catch(err => {
+            setLoading(false);
+
+            toast.error(err.response.data.message);
+          });
       }
     } catch (err) {
+      setLoading(false);
       if (err instanceof Yup.ValidationError) {
         const errorMessages = {};
 
@@ -68,6 +78,7 @@ function SignIn() {
 
         formRef.current.setErrors(errorMessages);
       } else {
+        setLoading(false);
         toast.error('Houve um erro ao realizar o cadastro!');
       }
     }
@@ -105,12 +116,18 @@ function SignIn() {
                 <strong>política de privacidade</strong>.
               </h4>
             </div>
-            <input
-              style={{ width: '100%' }}
-              type="submit"
-              className="btn-def"
-              value={loading ? 'Carregando...' : 'Cadastrar'}
-            />
+            {!isLoading ? (
+              <input
+                style={{ width: '100%' }}
+                type="submit"
+                className="btn-def"
+                value="Cadastrar"
+              />
+            ) : (
+              <div id="loading" className="btn-def">
+                <Loader type="Oval" color="#fff" height={20} width={100} />
+              </div>
+            )}
           </Form>
         </div>
         <div className="signup-devstore">
