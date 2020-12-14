@@ -45,7 +45,7 @@ function SignIn() {
 
   return (
     <div className="wrapper-container">
-      <div className="container w3-animate-left">
+      <div className="login-container w3-animate-left">
         <div className="devstore">
           <header className="dev-header">
             <h1>DEVSTORE</h1>

@@ -1,4 +1,4 @@
-.container {
+.login-container {
   width: 100vw !important;
   height: 100vh;
   padding: 0 2rem;
@@ -122,12 +122,12 @@ a{
   color: var(--color-primary-hover);
 }
 @media (max-width: 1050px) {
-  .container {
+  .login-container {
     max-width: 85% !important;
   }
 }
 @media (max-width: 870px) {
-  .container {
+  .login-container {
     max-width: 95% !important;
     flex-direction: column;
   }
@@ -151,7 +151,7 @@ a{
   }
 }
 @media (max-width: 600px) {
-  .container {
+  .login-container {
     max-width: 100% !important;
   }
 }
