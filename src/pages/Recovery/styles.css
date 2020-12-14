@@ -52,3 +52,9 @@
     max-width: 100% !important;
   }
 }
+
+@media (max-width: 790px) {
+  .recovery-container {
+    width: 100%;
+  }
+}
