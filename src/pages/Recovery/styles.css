@@ -58,3 +58,16 @@
     width: 100%;
   }
 }
+@media (max-width: 500px) {
+  .recovery-container form {
+    flex-direction: column;
+  }
+  .recovery-container form .btn-def {
+    padding: 9px 32px!important;
+    margin-top: 20px;
+    width: 100%;
+  }
+  .recovery-container form .input-content {
+    margin-right: 0px;
+  }
+}
