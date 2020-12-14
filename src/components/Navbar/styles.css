@@ -237,6 +237,18 @@
   margin-top: 10px;
   font-size: 1.7rem;
 }
+#signin-out {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-white);
+  transition: .2s;
+}
+#signin-out:hover {
+  color: #fff;
+}
 #actions {
   text-align: center;
 }

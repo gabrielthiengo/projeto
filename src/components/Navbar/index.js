@@ -217,7 +217,7 @@ function Navbar() {
             <Link to="/profile">Minha Conta</Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <button onClick={handleSignOut} type="submit">
+            <button id="signin-out" onClick={handleSignOut} type="submit">
               Sair
             </button>
           </MenuItem>
