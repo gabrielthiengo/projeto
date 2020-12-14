@@ -1,4 +1,4 @@
-.container {
+.recovery-content {
   width: 100vw !important;
   height: 100vh;
   padding: 0 2rem;
@@ -45,4 +45,10 @@
 }
 .recovery-container form .btn-def {
   padding: 9px 32px !important;
+}
+
+@media (max-width: 990px) {
+  .recovery-content {
+    max-width: 100% !important;
+  }
 }

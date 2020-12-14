@@ -21,7 +21,7 @@ function Recovery() {
 
   return (
     <div className="wrapper-container">
-      <div className="container w3-animate-bottom">
+      <div className="recovery-content w3-animate-bottom">
         <div className="recovery-container">
           <div style={{ width: '100%', textAlign: 'left' }}>
             <Link to="/signin">
