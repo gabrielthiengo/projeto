@@ -26,7 +26,6 @@ function Home() {
   const formRef = useRef(null);
 
   useEffect(() => {
-    setIsLoading(true);
     if (products.length === 0) {
       window.scrollTo(0, 0);
     }
@@ -36,15 +35,17 @@ function Home() {
     }
 
     async function loadProducts() {
+      setIsLoading(true);
       const response = await api.get(`product/${currPage}`);
       setProducts(response.data.data);
       setTotalPage(response.data.lastPage);
+
+      setIsLoading(false);
     }
 
     if (!filtered) {
       loadProducts();
     }
-    setIsLoading(false);
   }, [filtered, currPage]);
 
   function handleChangePage(event, value) {
