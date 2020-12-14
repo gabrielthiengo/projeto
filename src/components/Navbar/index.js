@@ -2,13 +2,14 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, Menu, Drawer, MenuItem } from '@material-ui/core';
 
 import { FaShoppingCart, FaTrash, FaMehRollingEyes } from 'react-icons/fa';
 import './styles.css';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { signOut } from '~/store/modules/auth/actions';
 import { removeProductFromCart } from '../../store/modules/cart/actions';
 import { store } from '~/store';
 
@@ -40,6 +41,12 @@ function Navbar() {
 
     setState({ ...state, [anchor]: open });
   };
+
+  function handleSignOut() {
+    dispatch(signOut());
+
+    toast.success('Logout realizado com sucesso!');
+  }
 
   return (
     <div className="navbar">
@@ -209,7 +216,9 @@ function Navbar() {
             <Link to="/profile">Minha Conta</Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Link to="/">Sair</Link>
+            <button onClick={handleSignOut} type="submit">
+              Sair
+            </button>
           </MenuItem>
         </Menu>
       </div>
