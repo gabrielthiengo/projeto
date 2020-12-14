@@ -174,12 +174,19 @@ function ProductShow() {
           </section>
         </main>
       ) : (
-        <Loader
-          type="Oval"
-          color="rgb(147, 130, 215)"
-          height={50}
-          width={100}
-        />
+        <>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Loader
+            type="Oval"
+            color="rgb(147, 130, 215)"
+            height={50}
+            width={100}
+          />
+        </>
       )}
     </div>
   );
