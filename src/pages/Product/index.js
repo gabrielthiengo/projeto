@@ -5,7 +5,6 @@ import React, { useLayoutEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
 import { Select, MenuItem } from '@material-ui/core/';
 import { toast } from 'react-toastify';
@@ -36,8 +35,9 @@ function ProductShow() {
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
-    setIsLoading(true);
+
     async function loadProduct() {
+      setIsLoading(true);
       const response = await api.get(`product-show/${id}`);
       setProduct(response.data.product);
       setProductList(response.data.product_list.data);
@@ -45,10 +45,10 @@ function ProductShow() {
       if (imageState === '') {
         setImageState(response.data.product.photo_cover);
       }
+      setIsLoading(false);
     }
 
     loadProduct();
-    setIsLoading(false);
   }, []);
 
   const handleChangeSize = event => {
