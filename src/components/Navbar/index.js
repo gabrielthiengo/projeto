@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Menu, Drawer, MenuItem } from '@material-ui/core';
 
 import { FaShoppingCart, FaTrash, FaMehRollingEyes } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import './styles.css';
 
 import { signOut } from '~/store/modules/auth/actions';
