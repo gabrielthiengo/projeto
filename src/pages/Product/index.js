@@ -49,7 +49,7 @@ function ProductShow() {
     }
 
     loadProduct();
-  }, []);
+  }, [id]);
 
   const handleChangeSize = event => {
     setSize(event.target.value);
