@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Navbar from '~/components/Navbar';
 
 import { store } from '~/store';
+import api from '~/services/api';
 import { cepMask } from '~/utils/functions';
 
 import './styles.css';
@@ -18,10 +19,23 @@ function Checkout() {
   );
   const [freight, setFreight] = useState(0);
 
-  function handleDiscount() {
+  async function handleDiscount() {
     if (discount === 0 || discount < 0) {
       toast.error('Insira um código de desconto válido');
     }
+
+    await api
+      .get(`discount/${discount}`)
+      .then(res => {
+        setValueDiscount((res.data.percentage * total) / 100);
+
+        const response = (res.data.percentage * total) / 100;
+
+        toast.success(`Você recebeu um desconto de R$ ${response.toFixed(2)}`);
+      })
+      .catch(err => {
+        toast.error(err.response.data.message);
+      });
   }
 
   function handleFreight() {
@@ -63,6 +77,7 @@ function Checkout() {
                       className="input-checkout"
                       type="text"
                       placeholder="Código do Cupom"
+                      onChange={e => setDiscount(e.target.value)}
                     />
                     <button
                       className="button-checkout"
@@ -73,7 +88,7 @@ function Checkout() {
                     </button>
                   </div>
                   <h4>DESCONTO (-):</h4>
-                  <h3>R$ 0.00</h3>
+                  <h3>R$ {valueDiscount.toFixed(2)}</h3>
                 </div>
                 <div className="checkout-detail">
                   <div className="container-input">
@@ -97,7 +112,7 @@ function Checkout() {
                 </div>
                 <div className="checkout-detail">
                   <h4>TOTAL DO PEDIDO (=):</h4>
-                  <h3>R$ {total.toFixed(2)}</h3>
+                  <h3>R$ {(total - valueDiscount).toFixed(2)}</h3>
                 </div>
                 {cart.length > 0 && (
                   <div className="checkout-detail">
