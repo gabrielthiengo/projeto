@@ -36,9 +36,13 @@ function Home() {
 
     async function loadProducts() {
       setIsLoading(true);
-      const response = await api.get(`product/${currPage}`);
-      setProducts(response.data.data);
-      setTotalPage(response.data.lastPage);
+      try {
+        const response = await api.get(`product/${currPage}`);
+        setProducts(response.data.data);
+        setTotalPage(response.data.lastPage);
+      } catch (err) {
+        setIsLoading(false);
+      }
 
       setIsLoading(false);
     }

@@ -91,8 +91,8 @@ export default function Profile() {
                     type="text"
                     placeholder="Seu cep"
                     autoComplete="off"
-                    value={zipCode}
-                    onChange={e => setZipCode(cepMask(e.target.value))}
+                    value={cepMask(zipCode)}
+                    onChange={e => setZipCode(e.target.value)}
                   />
                 </div>
                 <div id="content">

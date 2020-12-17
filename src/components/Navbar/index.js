@@ -107,7 +107,7 @@ function Navbar() {
             <Link to="/">INÍCIO</Link>
             <Link to="/">FAVORITOS</Link>
             {signed ? (
-              <Link to="/">MINHAS COMPRAS</Link>
+              <Link to="/shopping">MINHAS COMPRAS</Link>
             ) : (
               <Link to="/signin">ENTRAR</Link>
             )}
@@ -188,7 +188,16 @@ function Navbar() {
                   </div>
                   {cart.length > 0 && (
                     <div className="checkout-detail">
-                      <Link id="finish" to="/checkout">
+                      <Link
+                        id="finish"
+                        to={signed ? '/checkout' : '/signin'}
+                        onClick={() => {
+                          if (!signed)
+                            toast.warn(
+                              'Faça login ou cadastre-se para finalizar a compra'
+                            );
+                        }}
+                      >
                         FINALIZAR
                       </Link>
                     </div>
@@ -211,7 +220,7 @@ function Navbar() {
             <Link to="/">Favoritos</Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Link to="/">Minhas Compras</Link>
+            <Link to="/shopping">Minhas Compras</Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
             <Link to="/profile">Minha Conta</Link>

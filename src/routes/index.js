@@ -9,6 +9,7 @@ import ProductShow from '../pages/Product';
 import Profile from '../pages/Profile';
 import Checkout from '../pages/Checkout';
 import Recovery from '../pages/Recovery';
+import Shopping from '../pages/Shopping';
 
 export default function Routes() {
   return (
@@ -20,6 +21,7 @@ export default function Routes() {
       <Route path="/checkout" component={Checkout} />
       <Route path="/recovery" component={Recovery} />
 
+      <Route path="/shopping" component={Shopping} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
     </Switch>
   );
