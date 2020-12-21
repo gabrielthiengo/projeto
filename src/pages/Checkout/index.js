@@ -55,16 +55,30 @@ function Checkout() {
 
           <div className="main-checkout w3-animate-bottom">
             <div style={{ flex: '1' }} className="checkout-support">
-              {cart.map(product => {
-                return (
-                  <div key={product.product.code} className="checkout-products">
-                    <h4>{product.product.title}</h4>
+              <div
+                style={{
+                  maxHeight: '240px',
+                  overflow: 'auto',
+                  paddingRight: cart.length > 4 ? '10px' : '0px',
+                }}
+              >
+                {cart.map(product => {
+                  return (
+                    <div
+                      key={product.product.code}
+                      className="checkout-products"
+                    >
+                      <h4>{product.product.title}</h4>
 
-                    <h4>{product.product.quantity}</h4>
-                    <h4>R$ {product.product.price.toFixed(2)}</h4>
-                  </div>
-                );
-              })}
+                      <h4>{product.product.quantity}</h4>
+                      <h4>R$ {product.product.price.toFixed(2)}</h4>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="checkout-finish">
+                <h4>Pagamento</h4>
+              </div>
             </div>
 
             <div className="cart-total">
@@ -114,13 +128,6 @@ function Checkout() {
                   <h4>TOTAL DO PEDIDO (=):</h4>
                   <h3>R$ {(total - valueDiscount).toFixed(2)}</h3>
                 </div>
-                {cart.length > 0 && (
-                  <div className="checkout-detail">
-                    <button id="finish" type="submit">
-                      COMPRAR
-                    </button>
-                  </div>
-                )}
               </header>
             </div>
           </div>

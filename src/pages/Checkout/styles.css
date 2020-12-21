@@ -34,7 +34,7 @@
 .input-checkout {
   flex: 1;
   margin-right: 10px;
-  background: var(--color-shape);
+  background: var(--color-background);
   border: 2px solid transparent;
   padding: 5px 10px;
   border-radius: 3px;
@@ -60,6 +60,20 @@
 }
 .cart-total {
   min-width: 325px;
+  background: var(--color-shape);
+  border-radius: 5px;
+  margin-right: 0px;
+}
+.checkout-detail {
+  border-color: var(--color-background);
+}
+
+.checkout-finish {
+  background: var(--color-shape);
+  margin-top: 20px;
+  min-height: 200px;
+  padding: 15px;
+  border-radius: 5px;
 }
 
 @media (max-width: 800px) {

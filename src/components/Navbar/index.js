@@ -170,7 +170,7 @@ function Navbar() {
                   <h3>Seu Carrinho está vazio...</h3>
                 </div>
               )}
-              <div className="cart-total">
+              <div className="cart-total" style={{ marginRight: '20px' }}>
                 <header className="cart-total-header">
                   <h4>CHECKOUT</h4>
 
