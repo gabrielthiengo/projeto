@@ -1,13 +1,7 @@
-<h1>GoBarber Web</h1>
-<h3> The goBarber Web is the provider's version, here he can recieve notifications, he can manage his schedule and check who made an appointment and when has an appointment.</h3>
-<p>
-  <img src="src/assets/print1.png" width="350">
-  <img src="src/assets/print2.png" width="350">
-  <img src="src/assets/print3.png" width="350">
-  <img src="src/assets/print4.png" width="350">
-  <img src="src/assets/print5.png" width="350">
-  <img src="src/assets/print6.png" width="350">
-</p>
+<h1>Painel Administrativo</h1>
+<h3>Este painel administrativo tem como intuito melhorar a produtividade e a capacidade
+de vendas de lojas</h3>
+
 <h3>Tecnologies</h3>
 <ul>
   <li>ReactJS: To build a Single page application </li>
