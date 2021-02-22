@@ -84,11 +84,23 @@ a:hover {
 .right {
   justify-content: flex-end;
 }
-
 .main-container {
   display: flex;
   margin-left: 230px;
   padding: 15px;
   min-width: calc(100% - 230px);
   min-height: 100%;
+}
+.MuiDataGrid-root .MuiDataGrid-colCell {
+  font-size: 1.5rem;
+  font-weight: 800 !important;
+}
+.MuiDataGrid-root .MuiDataGrid-cell {
+  font-size: 1.5rem;
+}
+.MuiDataGrid-root .MuiDataGrid-rowCount, .MuiDataGrid-root .MuiDataGrid-selectedRowCount {
+  font-size: 1.5rem;
+}
+.MuiTypography-body2 {
+  font-size: 1.5rem !important;
 }

@@ -1,0 +1,5 @@
+.table {
+  background-color: var(--color-background);
+  width: 100%;
+  font-size: 1.5rem;
+}
