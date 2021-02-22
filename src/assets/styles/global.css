@@ -1,5 +1,5 @@
 :root {
-  --color-background: #1c1c26;
+  --color-background: #fff;
   --color-green: #04d361;
   --color-red: #e83f5b;
   --color-red-hover: #da3a55;
@@ -9,7 +9,8 @@
   --color-primary: rgb(147, 130, 215);
   --color-primary-hover: rgb(136, 120, 199);
   --color-secondary: #e1e1e6;
-  --color-text: #a8a8b3;
+  --color-text: #2B3A53;
+  --color-text-secondary: #A4AFB5;
   --color-support: #737380;
   --color-shape: rgb(44, 44, 56);
   --color-shape-hover: #29292e;
@@ -32,9 +33,9 @@
 html, body, #root {
   min-height: 100vh;
   height: auto !important;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
-  background: var(--color-background);
+  background: #F6F9FB;
 }
 
 #root {
@@ -47,13 +48,13 @@ body {
 }
 
 body, input, button, textarea {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   color: var(--color-text);
 }
 
 a, h1, h2, h3, h4, h5 {
   color: var(--color-text);
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   margin: 0;
 }
 a:hover {
@@ -67,102 +68,27 @@ a:hover {
 
 .Toastify__toast {
   border-radius: 0.3rem !important;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.5rem;
 }
 
-.wrapper-container {
-  width: 100%;
-  min-height: 100vh;
-  height: auto;
+.dflex {
   display: flex;
+}
+.center {
+  align-items: center;
+}
+.column {
   flex-direction: column;
-  align-items: center;
 }
-.btn-def-small {
-  border: 1px solid var(--color-primary);
-  outline: none;
-  color: #fff;
-  background: var(--color-primary);
-  width: 100%;
-  border-radius: 5px;
-  padding: 8px 32px;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 16px;
-  text-transform: uppercase;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  cursor: pointer;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  max-width: 118px;
-}
-.btn-def {
-  border: none;
-  outline: none;
-  color: #fff !important;
-  background: var(--color-primary) !important;
-  width: auto;
-  border-radius: 5px;
-  padding: 12px 32px;
-  font-weight: bold;
-  font-size: 14px !important;
-  line-height: 16px !important;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.2s ease;
-  font-size: 14px !important;
-  line-height: 26px !important;
-}
-.btn-def:hover,
-.btn-def-small:hover {
-  color: #fff !important;
-  background: var(--color-primary-hover) !important;
+.right {
+  justify-content: flex-end;
 }
 
-.btn-def-secondary-small {
-  border: 1px solid var(--color-primary);
-  outline: none;
-  color: var(--color-primary);
-  background: var(--color-shape);
-  width: 100%;
-  border-radius: 5px;
-  padding: 8px 32px;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 16px;
-  text-transform: uppercase;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  cursor: pointer;
+.main-container {
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  max-width: 118px;
-}
-.btn-def-secondary-small:hover {
-  border: 1px solid var(--color-primary-hover);
-  color: var(--color-primary-hover);
+  margin-left: 230px;
+  padding: 15px;
+  min-width: calc(100% - 230px);
+  min-height: 100%;
 }

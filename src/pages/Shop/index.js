@@ -4,15 +4,15 @@ import Sidebar from '~/components/Sidebar';
 
 import './styles.css';
 
-function Home() {
+function Shop() {
   return (
     <>
-      <Sidebar home />
+      <Sidebar store home={false} />
       <div className="main-container">
-        <h4>Hello World</h4>
+        <h4>Loja</h4>
       </div>
     </>
   );
 }
 
-export default Home;
+export default Shop;

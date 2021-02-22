@@ -5,24 +5,24 @@ import Signin from '../pages/SignIn';
 import Signup from '../pages/SignUp';
 
 import Home from '../pages/Home';
-import ProductShow from '../pages/Product';
-import Profile from '../pages/Profile';
-import Checkout from '../pages/Checkout';
-import Recovery from '../pages/Recovery';
-import Shopping from '../pages/Shopping';
+import Calls from '../pages/Calls';
+import Order from '../pages/Order';
+import Products from '../pages/Products';
+import Shop from '../pages/Shop';
+import Collection from '../pages/Collection';
 
 export default function Routes() {
   return (
     <Switch>
       <Route path="/signin" component={Signin} isRegister />
       <Route path="/register" component={Signup} isRegister />
-      <Route path="/" exact component={Home} />
-      <Route path="/product/:id" component={ProductShow} />
-      <Route path="/checkout" component={Checkout} />
-      <Route path="/recovery" component={Recovery} />
 
-      <Route path="/shopping" component={Shopping} isPrivate />
-      <Route path="/profile" component={Profile} isPrivate />
+      <Route path="/" exact component={Home} />
+      <Route path="/chamados" component={Calls} />
+      <Route path="/pedidos" component={Order} />
+      <Route path="/produtos" component={Products} />
+      <Route path="/loja" component={Shop} />
+      <Route path="/colecao" component={Collection} />
     </Switch>
   );
 }

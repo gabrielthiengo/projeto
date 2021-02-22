@@ -4,15 +4,15 @@ import Sidebar from '~/components/Sidebar';
 
 import './styles.css';
 
-function Home() {
+function Order() {
   return (
     <>
-      <Sidebar home />
+      <Sidebar orders home={false} />
       <div className="main-container">
-        <h4>Hello World</h4>
+        <h4>Pedidos</h4>
       </div>
     </>
   );
 }
 
-export default Home;
+export default Order;
