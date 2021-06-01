@@ -1,39 +1,65 @@
 .sidebar {
-  position: fixed;
+  width: 215px;
   min-height: 100%;
-  width: 230px;
-  background: var(--color-background);
-  padding: 10px;
+
+  background: var(--color-primary);
+
+  position: fixed;
+  font-weight: 600 !important;
+
 }
 .sidebar header {
-  margin-top: 10px;
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid var(--color-text-secondary);
+  margin-bottom: 20px;
+
+  text-align: center;
+
   padding-bottom: 10px;
+  padding-top: 30px;
   font-size: 1.9rem;
   font-weight: 800;
 }
-.menu-item {
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: .4s;
+.sidebar header h4 {
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #fff;
+}
+.sidebar header p {
+  color: rgb(238, 238, 238);
   font-size: 1.5rem;
 }
-.menu-item + .menu-item {
-  margin-top: 10px;
+.menu-content {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.menu-item {
+  padding: 12px;
+  transition: .4s;
+  font-size: 1.5rem;
+
+  border-bottom: 1px solid transparent;
+}
+.menu-item a {
+  color: #fff;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+}
+.menu-item a:hover {
+  color: #fff !important;
 }
 .menu-item svg {
   margin-right: 10px;
+  color: var(--color-secondary);
+  width: 30px;
 }
 .menu-item:hover {
-  background: var(--color-text);
+  border-bottom: 1px solid var(--color-secondary);
   color: #fff !important;
 }
 .active {
-  background: var(--color-text);
+  border-bottom: 1px solid var(--color-secondary);
   color: #fff;
 }

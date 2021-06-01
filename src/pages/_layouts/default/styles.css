@@ -1,7 +1,16 @@
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+
+  display: flex;
+}
 .wrapper-default {
-    width: 100%;
-    min-height: 100%;
-    height: auto !important;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  height: auto !important;
+  margin-left: 215px;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
 }

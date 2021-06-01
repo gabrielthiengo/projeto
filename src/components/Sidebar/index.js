@@ -1,80 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import {
   FaHome,
-  FaTag,
-  FaComments,
-  FaStore,
-  FaWindowRestore,
+  FaSearch,
+  FaChartPie,
   FaClipboardCheck,
+  FaCogs,
+  FaSignOutAlt,
+  FaSitemap,
 } from 'react-icons/fa';
 
 import './styles.css';
 
-function Sidebar({ home, calls, collection, products, orders, store }) {
+function Sidebar() {
+  const [isActive, setIsActive] = useState(0);
   return (
     <div className="dflex column sidebar">
-      <header>Dashboard</header>
+      <header>
+        <FaSitemap size={40} color="#f37920" />
+        <h4>GESTÃO À VISTA</h4>
+      </header>
 
-      <Link to="/" className={`menu-item ${home && 'active'} `}>
-        <div className="dflex center">
-          <FaHome />
-          Início
+      <div className="menu-content">
+        <div className={`menu-item ${isActive === 0 && 'active'} `}>
+          <Link to="/" onClick={() => setIsActive(0)}>
+            <FaHome />
+            INÍCIO
+          </Link>
         </div>
-      </Link>
-      <Link to="/chamados" className={`menu-item ${calls && 'active'} `}>
-        <div className="dflex center">
-          <FaComments />
-          Chamados
+        <div className={`menu-item ${isActive === 1 && 'active'} `}>
+          <Link to="/" onClick={() => setIsActive(1)}>
+            <FaSearch />
+            CONSULTAS
+          </Link>
         </div>
-      </Link>
-      <Link to="/colecao" className={`menu-item ${collection && 'active'} `}>
-        <div className="dflex center">
-          <FaWindowRestore />
-          Coleção
+        <div className={`menu-item ${isActive === 3 && 'active'} `}>
+          <Link to="/" onClick={() => setIsActive(3)}>
+            <FaClipboardCheck />
+            CADASTROS
+          </Link>
         </div>
-      </Link>
-      <Link to="/pedidos" className={`menu-item ${orders && 'active'} `}>
-        <div className="dflex center">
-          <FaClipboardCheck />
-          Pedidos
+        <div className={`menu-item ${isActive === 4 && 'active'} `}>
+          <Link to="/" onClick={() => setIsActive(4)}>
+            <FaChartPie />
+            INDICADORES
+          </Link>
         </div>
-      </Link>
-      <Link to="/produtos" className={`menu-item ${products && 'active'} `}>
-        <div className="dflex center">
-          <FaTag />
-          Produtos
+        <div className={`menu-item ${isActive === 5 && 'active'} `}>
+          <Link to="/" onClick={() => setIsActive(5)}>
+            <FaCogs />
+            CONFIGURAÇÕES
+          </Link>
         </div>
-      </Link>
-      <Link to="/loja" className={`menu-item ${store && 'active'} `}>
-        <div className="dflex center">
-          <FaStore />
-          Loja
+        <div className={`menu-item ${isActive === 5 && 'active'} `}>
+          <Link to="/" onClick={() => setIsActive(5)}>
+            <FaSignOutAlt />
+            SAIR
+          </Link>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }
 
 export default Sidebar;
-
-Sidebar.propTypes = {
-  home: PropTypes.bool,
-  calls: PropTypes.bool,
-  collection: PropTypes.bool,
-  products: PropTypes.bool,
-  orders: PropTypes.bool,
-  store: PropTypes.bool,
-};
-
-Sidebar.defaultProps = {
-  home: true,
-  calls: false,
-  collection: false,
-  products: false,
-  orders: false,
-  store: false,
-};
