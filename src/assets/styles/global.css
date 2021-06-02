@@ -4,9 +4,9 @@
   --color-red: #e83f5b;
   --color-red-hover: #da3a55;
   --color-yellow: #f7df1e;
-  --color-primary: #34558a;
-  --color-primary-hover: rgb(153, 136, 221);
-  --color-primary-dark: #2d4a77;
+  --color-primary: rgb(33, 55, 88);
+  --color-primary-hover: #6b54ca;
+  --color-primary-dark: rgb(33, 55, 88);
   --color-secondary: #f37920;
   --color-secondary-hover: #ff832b;
   --color-text: #282d36;
@@ -17,7 +17,7 @@
   --color-icons: #41414d;
   --color-border: #DFDFDF;
   --color-black: #0d0d0f;
-  --color-white: rgb(225, 225, 230);
+  --color-white: rgb(240, 240, 240);
 
   font-size: 60%;
 }
@@ -75,4 +75,33 @@ a:hover {
 .main-container {
   width: 100%;
   height: 100%;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+
+  padding: 8px 14px 7px 14px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+
+  background: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #333333;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0,0,0,0.18);
+
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn-primary svg {
+  margin-right: 5px;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.26)
 }

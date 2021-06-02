@@ -2,7 +2,7 @@
   width: 215px;
   min-height: 100%;
 
-  background: var(--color-primary);
+  border-right: 2px solid rgb(94, 74, 184, 0.3);
 
   position: fixed;
   font-weight: 600 !important;
@@ -19,14 +19,11 @@
   font-weight: 800;
 }
 .sidebar header h4 {
-  font-weight: 500;
+  font-weight: bold;
   margin-bottom: 10px;
-  color: #fff;
+  color: var(--color-primary);
 }
-.sidebar header p {
-  color: rgb(238, 238, 238);
-  font-size: 1.5rem;
-}
+
 .menu-content {
   padding-left: 5px;
   padding-right: 5px;
@@ -39,10 +36,10 @@
   border-bottom: 1px solid transparent;
 }
 .menu-item a {
-  color: #fff;
+  color: var(--color-primary);
   font-size: 1.5rem;
   letter-spacing: 1px;
-  font-weight: 500;
+  font-weight: 600;
 
   display: flex;
   align-items: center;
@@ -55,11 +52,10 @@
   color: var(--color-secondary);
   width: 30px;
 }
-.menu-item:hover {
-  border-bottom: 1px solid var(--color-secondary);
-  color: #fff !important;
+.menu-item a:hover {
+  color: var(--color-secondary) !important;
 }
-.active {
-  border-bottom: 1px solid var(--color-secondary);
-  color: #fff;
+
+.active a {
+  color: var(--color-secondary) !important;
 }

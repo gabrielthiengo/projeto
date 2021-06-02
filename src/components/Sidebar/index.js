@@ -26,37 +26,37 @@ function Sidebar() {
       <div className="menu-content">
         <div className={`menu-item ${isActive === 0 && 'active'} `}>
           <Link to="/" onClick={() => setIsActive(0)}>
-            <FaHome />
+            <FaHome size={18} />
             INÍCIO
           </Link>
         </div>
         <div className={`menu-item ${isActive === 1 && 'active'} `}>
           <Link to="/" onClick={() => setIsActive(1)}>
-            <FaSearch />
+            <FaSearch size={18} />
             CONSULTAS
           </Link>
         </div>
         <div className={`menu-item ${isActive === 3 && 'active'} `}>
           <Link to="/" onClick={() => setIsActive(3)}>
-            <FaClipboardCheck />
+            <FaClipboardCheck size={18} />
             CADASTROS
           </Link>
         </div>
         <div className={`menu-item ${isActive === 4 && 'active'} `}>
           <Link to="/" onClick={() => setIsActive(4)}>
-            <FaChartPie />
+            <FaChartPie size={18} />
             INDICADORES
           </Link>
         </div>
         <div className={`menu-item ${isActive === 5 && 'active'} `}>
           <Link to="/" onClick={() => setIsActive(5)}>
-            <FaCogs />
+            <FaCogs size={18} />
             CONFIGURAÇÕES
           </Link>
         </div>
         <div className={`menu-item ${isActive === 5 && 'active'} `}>
           <Link to="/" onClick={() => setIsActive(5)}>
-            <FaSignOutAlt />
+            <FaSignOutAlt size={18} />
             SAIR
           </Link>
         </div>
