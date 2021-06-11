@@ -1,99 +1,410 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable react/jsx-no-target-blank */
 import React, { useEffect, useState } from 'react';
 
-import { FaBuffer, FaBalanceScaleLeft, FaUsers, FaPlus } from 'react-icons/fa';
+import {
+  FaSearch,
+  FaDownload,
+  FaBirthdayCake,
+  FaExclamationTriangle,
+} from 'react-icons/fa';
+import ReactTooltip from 'react-tooltip';
+import { toast } from 'react-toastify';
+import { Form } from '@unform/web';
 
-import Card from '~/components/Card';
+import { useDispatch, useSelector } from 'react-redux';
+import CurrencyFormat from 'react-currency-format';
+import moment from 'moment';
+import { updateLoadingStatus } from '../../store/modules/loading/actions';
+import {
+  updateActivityRequest,
+  createActivityRequest,
+  setActivity,
+} from '../../store/modules/activity/actions';
+
+import maleAvatar from '~/assets/images/logos/male_avatar.png';
+import femaleAvatar from '~/assets/images/logos/female_avatar.png';
+import waveDark from '~/assets/images/icons/wave-dark.PNG';
+import waveLight from '~/assets/images/icons/wave-lighter.PNG';
+
+import { formatDate } from '~/utils/functions';
+
+import Target from '~/components/Target';
 import Activity from '~/components/Activity';
-import Mark from '~/components/Mark';
+import ShimmerActivity from '~/components/ShimmerActivity';
+import ShimmerTarget from '~/components/ShimmerTarget';
+import Modal from '~/components/Modal';
+import Input from '~/components/Input';
 
 import './styles.css';
 
 import api from '~/services/api';
 
-const token =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywic3RvcmVfaWQiOjEsImlhdCI6MTYyMjU4MTU0MywiZXhwIjoxNjIzMTg2MzQzfQ.-qIpTNmP9HeEjJ1JTe3zE7R7b6MQPMVYpTpwUR34sgQ';
-
 function Home() {
+  const dispatch = useDispatch();
+  const { profile } = useSelector(state => state.user);
+  const { activities } = useSelector(state => state.activity);
+  const { loading } = useSelector(state => state.loading);
   const [response, setResponse] = useState([]);
-  useEffect(() => {
-    api
-      .get('scaffold?page=1', {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then(res => {
-        setResponse(res.data);
-      });
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [toggleModal, setToggleModal] = useState(false);
+
+  const [newActivity, setNewActivity] = useState({
+    title: '',
+    description: '',
+    user_destination_id: 0,
+    start_date: '',
+    end_date: '',
   });
 
+  const date = formatDate();
+
+  useEffect(() => {
+    dispatch(updateLoadingStatus(true));
+    api
+      .get('scaffold?page=1')
+      .then(res => {
+        setResponse(res.data);
+        setIsUpdate(false);
+        dispatch(updateLoadingStatus(false));
+        dispatch(setActivity(res.data.activities));
+      })
+      .catch(() => {
+        setIsUpdate(false);
+        dispatch(updateLoadingStatus(false));
+      });
+  }, [isUpdate]);
+
+  const { totalSales, newsCustomers } = response;
+
+  function handleStatusActivity(status, activity) {
+    dispatch(updateActivityRequest(status, activity, false));
+  }
+
+  function handleSubmit() {
+    if (newActivity.title === '') {
+      toast.error('O título deve ser informado');
+    } else if (newActivity.description === '') {
+      toast.error('A descrição deve ser informado');
+    } else if (newActivity.user_destination_id === 0) {
+      toast.error('O usuário deve ser informado');
+    } else if (newActivity.start_date === '') {
+      toast.error('A data de início deve ser informada');
+    } else if (newActivity.end_date === '') {
+      toast.error('A data de fim deve ser informada');
+    } else {
+      dispatch(createActivityRequest(newActivity));
+      setToggleModal(false);
+    }
+  }
+
   return (
-    <div className="main-container">
-      <section className="card-section">
-        <Card
-          total="R$ 22.459,19"
-          title="Total de vendas"
-          background="rgb(52, 141, 80, 0.1)"
-          color="rgb(52, 141, 80)"
-          icon={<FaBalanceScaleLeft size={45} color="green" />}
-        />
-        <Card
-          total="50"
-          title="Novos clientes"
-          background="rgb(243, 121, 32, 0.1)"
-          color="rgb(243, 121, 32)"
-          icon={<FaUsers size={45} color="rgb(243, 121, 32)" />}
-        />
-        <Card
-          total={
-            response.openActivities?.count === null
-              ? 0
-              : response.openActivities?.count
-          }
-          title="Atividades em aberto"
-          background="rgb(0, 53, 246, 0.1)"
-          color="rgb(0, 53, 246)"
-          icon={<FaBuffer size={45} color="rgb(0, 53, 246)" />}
-        />
-        <Card
-          total="3"
-          title="Atividades atrasadas"
-          background="rgb(237, 28, 36, 0.1)"
-          color="rgb(237, 28, 36)"
-          icon={<FaBuffer size={45} color="rgb(237, 28, 36)" />}
-        />
-        <Card
-          total={
-            response.finishedActivities?.count === null
-              ? 0
-              : response.finishedActivities?.count
-          }
-          title="Atividades concluídas"
-          background="rgb(153, 217, 234, 0.1)"
-          color="rgb(70, 187, 217)"
-          icon={<FaBuffer size={45} color="rgb(70, 187, 217)" />}
-        />
-      </section>
+    <div className="home-container">
+      <div className="navbar">
+        <div className="input-section">
+          <FaSearch size={20} color="#333" />
+          <input type="text" placeholder="Buscar" />
+        </div>
+        <div className="login">
+          <div>
+            <h4>{profile.name}</h4>
+            <p>{profile.email}</p>
+          </div>
+          <img
+            src={profile.sex === 'M' ? maleAvatar : femaleAvatar}
+            alt="user"
+          />
+        </div>
+      </div>
       <main>
-        <div className="content">
-          <header>
-            <h4>Metas</h4>
-          </header>
-          <main>
-            <Mark marks={response.targets} />
-          </main>
-        </div>
-        <div className="content">
-          <header>
-            <h4>Atividades</h4>
-            <button type="button" className="btn-primary">
-              <FaPlus size={10} /> Atividade
-            </button>
-          </header>
-          <main>
-            <Activity activities={response.activities} />
-          </main>
-        </div>
+        <section className="left-container">
+          <div className="birthday-container">
+            <header>
+              <h3>ANIVERSARIANTES DO MÊS</h3>
+              <FaBirthdayCake size={18} />
+            </header>
+
+            {!loading ? (
+              response.birthdayMonth?.length !== 0 ? (
+                response.birthdayMonth?.map(customer => {
+                  return (
+                    <div key={customer.id}>
+                      <div className="client-info">
+                        <img
+                          src={
+                            customer.avatar !== null
+                              ? customer.avatar
+                              : customer.sex === 'M'
+                              ? maleAvatar
+                              : femaleAvatar
+                          }
+                          alt="cliente"
+                        />
+                        <div>
+                          <h4>{customer.name}</h4>
+                          <p>
+                            dia{' '}
+                            {moment(customer.birthdate).format('DD/MM/YYYY')}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="client-data">
+                        <a
+                          href={`https://wa.me/${
+                            customer.cellphone !== ''
+                              ? customer.cellphone
+                                  .replace('-', '')
+                                  .replace('(', '')
+                                  .replace(')', '')
+                                  .replace(' ', '')
+                              : customer.phone
+                                  .replace('-', '')
+                                  .replace('(', '')
+                                  .replace(')', '')
+                                  .replace(' ', '')
+                          }`}
+                          target="_blank"
+                          data-tip="Ligar"
+                        >
+                          {customer.cellphone !== ''
+                            ? customer.cellphone
+                            : customer.phone}
+                        </a>
+                        <span data-tip="Enviar email">{customer.email}</span>
+                        <ReactTooltip />
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="is-empty">
+                  <FaExclamationTriangle size={25} />
+                  <h4>Não tem aniversariantes no mês</h4>
+                </div>
+              )
+            ) : (
+              <ShimmerTarget />
+            )}
+          </div>
+          <br />
+          <div className="activities-container">
+            <header>
+              <h3>SUAS TAREFAS</h3>
+              <button
+                className="btn-primary"
+                type="button"
+                onClick={() => setToggleModal(true)}
+              >
+                <strong>+</strong> Atividade
+              </button>
+            </header>
+
+            {toggleModal && (
+              <Modal title="Criar nova tarefa">
+                <Form onSubmit={handleSubmit}>
+                  <section>
+                    <Input
+                      label="Título"
+                      name="title"
+                      value={newActivity.title}
+                      onChange={e =>
+                        setNewActivity({
+                          ...newActivity,
+                          title: e.target.value,
+                        })
+                      }
+                    />
+                    <div className="input-content">
+                      <label htmlFor="user_destination_id">Usuário</label>
+                      <div className="input-block">
+                        <select
+                          name="user_destination_id"
+                          id="user"
+                          value={newActivity.user_destination_id}
+                          onChange={e =>
+                            setNewActivity({
+                              ...newActivity,
+                              user_destination_id: e.target.value,
+                            })
+                          }
+                        >
+                          <option value={0}>Selecione</option>
+                          {response.users?.map(user => {
+                            return (
+                              <option key={user.id} value={user.id}>
+                                {user.name}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
+                    </div>
+                  </section>
+
+                  <div>
+                    <Input
+                      label="Descrição"
+                      name="description"
+                      value={newActivity.description}
+                      onChange={e =>
+                        setNewActivity({
+                          ...newActivity,
+                          description: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+
+                  <section>
+                    <div className="input-content">
+                      <label htmlFor="start_date">Data início</label>
+                      <div className="input-block">
+                        <CurrencyFormat
+                          format="##/##/####"
+                          mask="_"
+                          value={newActivity.start_date}
+                          onChange={e =>
+                            setNewActivity({
+                              ...newActivity,
+                              start_date: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div className="input-content">
+                      <label htmlFor="start_date">Data conclusão</label>
+                      <div className="input-block">
+                        <CurrencyFormat
+                          format="##/##/####"
+                          mask="_"
+                          value={newActivity.end_date}
+                          onChange={e =>
+                            setNewActivity({
+                              ...newActivity,
+                              end_date: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
+                  </section>
+                  <footer>
+                    <button
+                      className="btn-secondary"
+                      type="button"
+                      onClick={() => {
+                        setNewActivity({
+                          title: '',
+                          description: '',
+                          user_destination_id: 0,
+                          start_date: '',
+                          end_date: '',
+                        });
+                        setToggleModal(false);
+                      }}
+                    >
+                      Cancelar
+                    </button>
+                    <button className="btn-primary" type="submit">
+                      Salvar
+                    </button>
+                  </footer>
+                </Form>
+              </Modal>
+            )}
+
+            {!loading ? (
+              activities?.length !== 0 ? (
+                activities?.map(activity => {
+                  return (
+                    <div className="status-activity" key={activity.id}>
+                      <h4
+                        style={{
+                          borderLeft: `${
+                            activity.id === 1
+                              ? '2px solid #282d36'
+                              : activity.id === 2
+                              ? '2px solid #6b54ca'
+                              : activity.id === 3
+                              ? '2px solid #e83f5b'
+                              : activity.id === 4
+                              ? '2px solid #41414d'
+                              : '2px solid #04d361'
+                          }`,
+                        }}
+                      >
+                        {activity.description}
+                      </h4>
+                      <Activity
+                        status={activity.id}
+                        handle={handleStatusActivity}
+                        activities={activity.Activities}
+                      />
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="is-empty">
+                  <FaExclamationTriangle size={25} />
+                  <h4>Não existem tarefas ativas</h4>
+                </div>
+              )
+            ) : (
+              <ShimmerActivity />
+            )}
+          </div>
+        </section>
+        <section className="right-container">
+          <div className="card-container">
+            <div>
+              <div>
+                <CurrencyFormat
+                  value={totalSales}
+                  displayType="text"
+                  thousandSeparator
+                  prefix="R$ "
+                  renderText={value => <h4>{value}</h4>}
+                />
+                <p>Vendas</p>
+              </div>
+              <img src={waveDark} alt="" />
+            </div>
+            <div>
+              <div>
+                <h4>{newsCustomers}</h4>
+                <p>Clientes</p>
+              </div>
+              <img src={waveLight} alt="" />
+            </div>
+          </div>
+          <br />
+          <section>
+            <header>
+              <h4>{date}</h4>
+              <div>
+                <FaDownload size={16} />
+              </div>
+            </header>
+
+            {!loading ? (
+              response.targets?.length !== 0 ? (
+                response.targets?.map(target => {
+                  return <Target key={target.id} target={target} />;
+                })
+              ) : (
+                <div className="is-empty">
+                  <FaExclamationTriangle size={25} />
+                  <h4>Não existem metas ativas</h4>
+                </div>
+              )
+            ) : (
+              <ShimmerTarget />
+            )}
+          </section>
+        </section>
       </main>
     </div>
   );

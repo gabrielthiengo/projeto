@@ -1,50 +1,291 @@
-.main-container .card-section {
+.home-container {
   width: 100%;
+}
 
+.home-container .navbar .input-section {
+  width: 420px;
+
+  display: flex;
+  align-items: center;
+
+  background: var(--background);
+  padding: 10px 25px;
+  border-radius: 50px;
+}
+
+.home-container > .navbar {
   display: flex;
   justify-content: space-between;
 
-  margin-bottom: 10px;
+  border-bottom: 1px solid var(--background);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-.main-container main {
-  width: 100%;
+.home-container > .navbar > .input-section svg {
+  margin-right: 10px;
+}
 
+.home-container > .navbar > .input-section input {
+  flex: 1;
+
+  background: var(--background);
+  border: none;
+}
+
+.home-container > .navbar > .login {
+  display: flex;
+  align-items: center;
+}
+
+.home-container > .navbar > .login img {
+  width: 55px;
+}
+
+.home-container > .navbar > .login > div h4 {
+  margin-right: 10px;
+  font-size: 1.5rem;
+
+  text-align: center;
+}
+
+.home-container > .navbar > .login > div p {
+  margin-right: 10px;
+  font-size: 1.4rem;
+
+  text-align: center;
+}
+
+.home-container > main {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.main-container main .content {
-  width: 100%;
-  min-height: 100% !important;
+.home-container > main > .left-container {
+  flex: 1;
+}
 
-  background: #fff;
+.home-container > main > .right-container {
+  margin-left: 20px;
+
+  width: 45%;
+}
+
+.right-container > .card-container {
+  padding: 15px;
+  border: 1px solid var(--border);
   border-radius: 5px;
-  border: 1px solid var(--color-border);
+
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 }
 
-.main-container main .content + .content {
+.right-container > .card-container > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.right-container > .card-container > div > div {
+  flex: 1;
+}
+
+.right-container > .card-container div + div {
   margin-left: 10px;
+  border-left: 1px solid var(--border);
 }
 
-.main-container main .content header {
-  width: 100%;
-  min-height: 55px;
+.right-container > .card-container div + div > div {
+  padding-left: 15px;
+}
 
-  background: var(--color-white);
-  padding: 10px;
+.right-container > .card-container > div > div > h4 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-right: 10px;
+  color: var(--text);
+  font-family: 'Hammersmith One', sans-serif !important;
+}
+
+.right-container > .card-container > div > div > p {
+  color: var(--text-lighter);
+  font-family: 'Hammersmith One', sans-serif !important;
+}
+
+.right-container > .card-container > div > img {
+  width: 110px;
+}
+
+.right-container > section {
+  width: 100%;
+}
+
+.right-container > section > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.right-container > section > header > h4 {
+  font-size: 1.5rem;
+  color: var(--text-darker);
+}
+
+.right-container > section > header > div {
+  padding: 5px;
+  cursor: pointer;
   border-radius: 5px;
 
   display: flex;
   align-items: center;
+
+  transition: .2s;
+}
+
+.right-container > section > header > div > svg {
+  color: var(--text-darker);
+  transition: .2s;
+}
+
+.right-container > section > header > div:hover {
+  box-shadow: var(--shadow);
+}
+
+.right-container > section > header > div:hover svg {
+  color: var(--primary-lighter) !important;
+}
+
+.left-container > .birthday-container > header,
+.left-container > .activities-container > header {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
+
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
 }
 
-.main-container main .content header h4 {
+.left-container > .activities-container > header > button > strong {
+  margin-right: 5px;
+}
+
+.left-container > .activities-container > .status-activity h4 {
   font-size: 1.6rem;
-  font-weight: 600;
+
+  padding-left: 10px;
+  margin-bottom: 10px;
 }
 
-.main-container main .content main {
+.left-container > .activities-container > .status-activity + .status-activity {
+  margin-top: 10px;
+}
+
+.left-container > .birthday-container > header > h3,
+.left-container > .birthday-container > header > svg,
+.left-container > .activities-container > header > h3,
+.left-container > .activities-container > header > svg {
+  font-size: 1.8rem;
+  color: var(--text-darker);
+}
+
+.left-container > .birthday-container > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid var(--border);
   padding: 10px;
+  border-radius: 5px;
+}
+
+.left-container > .birthday-container > div > .client-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.left-container > .birthday-container > div > .client-info img {
+  width: 55px;
+  margin-right: 10px;
+  border-radius: 50px;
+}
+
+.left-container > .birthday-container > div > .client-info h4 {
+  font-size: 1.7rem;
+}
+
+.left-container > .birthday-container > div > .client-info p {
+  font-size: 1.4rem;
+  color: var(--text-darker);
+}
+
+.left-container > .birthday-container > div > .client-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.left-container > .birthday-container > div > .client-data > a,
+.left-container > .birthday-container > div > .client-data > span {
+  text-align: end;
+  font-size: 1.4rem;
+
+  cursor: pointer;
+  transition: .2s;
+}
+
+.left-container > .birthday-container > div > .client-data > span:hover {
+  color: var(--primary-lighter);
+}
+
+.left-container > .birthday-container > div + div {
+  margin-top: 10px;
+}
+
+.modal-overlay > .modal-container > section > form > section {
+  margin-top: 10px;
+  display: flex;
+
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.modal-overlay > .modal-container > section > form > div {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.modal-overlay > .modal-container > section > form > section > select {
+  width: 100%;
+  height: 4.5rem;
+}
+
+.modal-overlay > .modal-container > section > form > section > .input-content + .input-content {
+  margin-top: 0px;
+  margin-left: 10px;
+}
+
+.modal-overlay > .modal-container > section > form > footer {
+  width: 100%;
+  margin-top: 20px;
+  padding: 2rem;
+
+  background: var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 0px 0px 5px 5px;
+}
+
+.modal-overlay > .modal-container > section > form > footer > button + button {
+  margin-left: 20px;
 }

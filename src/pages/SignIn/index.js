@@ -1,13 +1,14 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
-import { FaUser, FaLock, FaLongArrowAltLeft } from 'react-icons/fa';
+import { FaUser, FaLock } from 'react-icons/fa';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInRequest } from '../../store/modules/auth/actions';
 
 import './styles.css';
 import InputLogin from '~components/InputLogin';
+import logo from '~/assets/images/logos/text.png';
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -45,26 +46,11 @@ function SignIn() {
 
   return (
     <div className="wrapper-container">
-      <div className="login-container w3-animate-left">
-        <div className="devstore">
-          <header className="dev-header">
-            <h1>DEVSTORE</h1>
-          </header>
-          <div className="dev-content">
-            <h2>
-              Faça login ou cadastre-se para ficar por dentro de todas as
-              novidades.
-            </h2>
-          </div>
-        </div>
-        <div className="login-content">
+      <div className="login-container">
+        <div className="login-content w3-animate-left">
+          <img src={logo} alt="logotipo" />
+          <br />
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <div className="arrow-back">
-              <Link to="/">
-                <FaLongArrowAltLeft size={20} />
-                <h3>Voltar para home</h3>
-              </Link>
-            </div>
             <InputLogin
               id="mail"
               label="Email"
@@ -78,9 +64,10 @@ function SignIn() {
               name="password"
               icon={<FaLock size={15} />}
             />
-            <Link className="recovery-pass a" to="/recovery">
+            <Link className="recovery-pass" to="/recovery">
               Esqueceu a Senha?
             </Link>
+            <br />
             <br />
 
             <input
@@ -89,15 +76,6 @@ function SignIn() {
               className="btn-def"
               value={loading ? 'Carregando...' : 'Acessar'}
             />
-
-            <br />
-
-            <div className="signup">
-              Novo por aqui?
-              <Link className="a" to="/register">
-                Cadastre-se
-              </Link>
-            </div>
           </Form>
         </div>
       </div>

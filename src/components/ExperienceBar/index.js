@@ -11,13 +11,17 @@ function ExperienceBar({ currExperience, experienceToFinish }) {
       <span>0</span>
 
       <div style={{ background: 'rgb(240, 240, 240)' }}>
-        <div style={{ width: `${percentToFinish}%` }} />
+        <div
+          style={{
+            width: `${percentToFinish >= 100 ? 100 : percentToFinish}%`,
+          }}
+        />
 
         {currExperience > 0 && (
           <span
             className="current-experience"
             style={{
-              left: `${percentToFinish}%`,
+              left: '50%',
             }}
           >
             {currExperience}

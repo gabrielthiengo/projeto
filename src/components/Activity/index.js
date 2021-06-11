@@ -1,94 +1,94 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactTooltip from 'react-tooltip';
 
-import { FaCheckCircle, FaBan, FaPlay, FaPowerOff } from 'react-icons/fa';
-
-import Moment from 'react-moment';
+import moment from 'moment';
+import {
+  FaRegPlayCircle,
+  FaBan,
+  FaPowerOff,
+  FaRegCheckCircle,
+} from 'react-icons/fa';
 
 import './styles.css';
 
-function Activity({ activities }) {
+function Activity({ activities, status, handle }) {
   return (
-    <div className="activity">
-      {activities?.map(status => {
+    <div>
+      {activities?.map(activity => {
         return (
-          <main key={status.description}>
-            <div className="status">
-              <div className="line" />
-              {status.description}
-            </div>
-            {status.Activities?.map(activity => {
-              return (
-                <div key={activity.title} className="activity-content">
-                  <div className="activity-header">
-                    <h4>{activity.title}</h4>
-                    <div className="actions">
-                      {status.id !== 2 && status.id !== 5 && (
-                        <button type="button">
-                          <FaPlay color="#f37920" data-tip="Iniciar" />
-                          <ReactTooltip />
-                        </button>
-                      )}
-                      {status.id !== 5 &&
-                        status.id !== 1 &&
-                        status.id !== 3 &&
-                        status.id !== 4 && (
-                          <button type="button">
-                            <FaCheckCircle
-                              color="#04d361"
-                              data-tip="Concluir"
-                            />
-                            <ReactTooltip />
-                          </button>
-                        )}
-                      {status.id !== 5 && status.id !== 3 && status.id !== 4 && (
-                        <button type="button">
-                          <FaBan color="#e83f5b" data-tip="Bloquear" />
-                          <ReactTooltip />
-                        </button>
-                      )}
-                      {status.id !== 3 && status.id !== 5 && (
-                        <button type="button">
-                          <FaPowerOff color="#6b54ca" data-tip="Cancelar" />
-                          <ReactTooltip />
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                  <div className="description">
-                    <p>{activity.description}</p>
-                  </div>
+          <div
+            key={activity.id}
+            className="activity-container"
+            style={{
+              background:
+                status === 1
+                  ? 'rgba(40, 45, 54, 0.05)'
+                  : status === 2
+                  ? 'rgba(107, 84, 202, 0.05)'
+                  : status === 3
+                  ? 'rgba(232, 63, 91, 0.05)'
+                  : status === 4
+                  ? 'rgba(65, 65, 77, 0.05)'
+                  : status === 4
+                  ? 'rgba(65, 65, 77, 0.05)'
+                  : 'rgba(4, 211, 97, 0.05)',
+            }}
+          >
+            <header>
+              <h3>{activity.title}</h3>
 
-                  <div className="footer">
-                    <div>
-                      <p>
-                        Início previsto:
-                        <strong>
-                          <Moment format="DD/MM/YYYY">
-                            {activity.start_date}
-                          </Moment>
-                        </strong>
-                      </p>
-                      {activity.conclusion_date !== null && (
-                        <p>
-                          Conclusão:
-                          <strong style={{ color: 'green' }}>
-                            <Moment format="DD/MM/YYYY">
-                              {activity.conclusion_date}
-                            </Moment>
-                          </strong>
-                        </p>
-                      )}
-                    </div>
-                    <p>
-                      Criado por:<strong>{activity.user.name}</strong>
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </main>
+              <div className="actions">
+                {status !== 5 && status !== 4 && status !== 2 && (
+                  <FaRegPlayCircle
+                    color="#6b54ca"
+                    onClick={() => handle(2, activity.id)}
+                  />
+                )}
+                {status !== 5 &&
+                  status !== 4 &&
+                  status !== 3 &&
+                  status !== 1 && (
+                    <FaRegCheckCircle
+                      color="#04d361"
+                      onClick={() => handle(5, activity.id)}
+                    />
+                  )}
+                {status !== 5 &&
+                  status !== 4 &&
+                  status !== 3 &&
+                  status !== 1 && (
+                    <FaBan
+                      color="#41414d"
+                      onClick={() => handle(3, activity.id)}
+                    />
+                  )}
+                {status !== 5 && status !== 4 && (
+                  <FaPowerOff
+                    color="#e83f5b"
+                    onClick={() => handle(4, activity.id)}
+                  />
+                )}
+              </div>
+            </header>
+            <div className="activity-main">
+              <p>{activity.description}</p>
+
+              <span>
+                criado pelo(a) <strong>{activity.provider.name}</strong> para o
+                dia
+                <strong>
+                  {` ${moment(activity.start_date).format('DD/MM/YYYY')}`}
+                </strong>
+              </span>
+              <span>
+                deverá ser realizada até
+                <strong>
+                  {` ${moment(activity.end_date).format('DD/MM/YYYY')}`}
+                </strong>
+              </span>
+            </div>
+          </div>
         );
       })}
     </div>
@@ -99,8 +99,11 @@ export default Activity;
 
 Activity.propTypes = {
   activities: PropTypes.oneOfType([PropTypes.array]),
+  handle: PropTypes.oneOfType([PropTypes.func]).isRequired,
+  status: PropTypes.number,
 };
 
 Activity.defaultProps = {
   activities: [],
+  status: '',
 };

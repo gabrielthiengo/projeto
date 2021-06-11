@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const numberOfLine = string => {
   if (string !== null) {
     if (string.length > 255) {
@@ -8,15 +10,32 @@ export const numberOfLine = string => {
   return string;
 };
 
-export const formatDate = date => {
-  const newDate = new Date(date);
+export function formatDate() {
+  const newDate = new Date();
 
-  const year = newDate.getFullYear();
-  const month = `00${newDate.getMonth() + 1}`.slice(-2);
-  const day = `00${newDate.getDate()}`.slice(-2);
+  const month = moment(newDate).month();
+  const day = moment(newDate).format('DD');
+  const year = moment(newDate).year();
 
-  return `${day}/${month}/${year}`;
-};
+  let strMonth;
+
+  if (month === 0) strMonth = 'JAN';
+  if (month === 1) strMonth = 'FEV';
+  if (month === 2) strMonth = 'MAR';
+  if (month === 3) strMonth = 'ABR';
+  if (month === 4) strMonth = 'MAI';
+  if (month === 5) strMonth = 'JUN';
+  if (month === 6) strMonth = 'JUL';
+  if (month === 7) strMonth = 'AGO';
+  if (month === 8) strMonth = 'SET';
+  if (month === 9) strMonth = 'OUT';
+  if (month === 10) strMonth = 'NOV';
+  if (month === 11) strMonth = 'DEZ';
+
+  const response = `HOJE | ${day} DE ${strMonth}, ${year}`;
+
+  return response;
+}
 
 export const cpfMask = value => {
   return value

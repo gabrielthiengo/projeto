@@ -1,0 +1,30 @@
+.shimmer-target box {
+  height: 104px;
+  width: 100%;
+}
+
+.shimmer-target lines {
+  height: 10px;
+  margin-top: 10px;
+  width: 200px;
+}
+
+.shimmer-target > div {
+  display: inline-flex;
+  flex-direction: column;
+  margin-left: 25px;
+  margin-top: 15px;
+  vertical-align: top;
+}
+
+
+
+@-webkit-keyframes placeholderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}

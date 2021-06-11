@@ -4,9 +4,9 @@ import { persistReducer } from 'redux-persist';
 export default reducers => {
   const persistedReducer = persistReducer(
     {
-      key: 'heaven-application',
+      key: 'Woodo/Application',
       storage,
-      whitelist: ['auth', 'user', 'cart'],
+      whitelist: ['auth', 'user'],
     },
     reducers
   );

@@ -1,0 +1,58 @@
+.progress {
+  width: 100%;
+  background: rgba(246, 133, 19, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress > div {
+  flex: 1;
+
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 1px solid var(--primary-lighter);
+}
+
+.progress > div > h4 {
+  font-size: 1.6rem;
+  color: var(--blue);
+}
+
+.progress > div > h4 {
+  font-size: 1.6rem;
+  color: var(--blue);
+}
+
+.progress > div > p {
+  font-size: 1.3rem;
+  color: var(--text-darker);
+  letter-spacing: .8px;
+}
+
+.progress strong {
+  font-size: 2rem;
+  color: var(--primary-darker);
+}
+
+.progress > span {
+  width: auto !important;
+  min-height: 62px;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--primary-darker);
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 1px solid var(--primary-lighter);
+}
+
+.progress + .progress {
+  margin-top: 10px;
+}

@@ -5,11 +5,12 @@
 
 .experience-bar span {
   font-size: 14px;
+  color: var(--text);
 }
 
 .experience-bar > div {
   flex: 1;
-  height: 4px;
+  height: 15px;
   border-radius: 4px;
   background: var(--gray-line);
   margin: 0 1.5rem;
@@ -17,7 +18,7 @@
 }
 
 .experience-bar > div > div {
-  height: 4px;
+  height: 15px;
   border-radius: 4px;
   background: var(--color-green);
 
@@ -26,7 +27,7 @@
 
 .experience-bar span.current-experience {
   position: absolute;
-  top: 12px;
+  top: -2px;
   transform: translateX(-50%);
   transition: left 0.4s;
 }
