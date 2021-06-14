@@ -5,12 +5,12 @@ import './styles.css';
 function ShimmerActivity() {
   return (
     <div className="shimmer-activity">
-      <lines className="shine" />
-      <box className="shine" />
-      <lines className="shine" />
-      <box className="shine" />
-      <lines className="shine" />
-      <box className="shine" />
+      <hr className="shine" />
+      <span className="shine" />
+      <hr className="shine" />
+      <span className="shine" />
+      <hr className="shine" />
+      <span className="shine" />
     </div>
   );
 }

@@ -1,0 +1,165 @@
+.customer-view > header {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  margin-bottom: 20px;
+  box-shadow: 0px 7px 13px -11px rgba(0,0,0,0.59);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.customer-view > header > div > a {
+  display: flex;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  width: 70px;
+}
+
+.customer-view > header > div > a > svg {
+  margin-top: 2px;
+  margin-right: 5px;
+}
+
+.customer-view > header > div > section {
+  display: flex;
+  align-items: center;
+}
+
+.customer-view > header > div > section > p {
+  font-size: 2rem;
+  margin-top: 3px;
+  margin-left: 10px;
+}
+
+.customer-view  header > button > strong {
+  margin-right: 5px;
+}
+
+.customer-view > header > div > div {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.customer-view > main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.customer-view > main > section {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.customer-view > main > section > h4 {
+  padding: 3px 5px;
+  font-size: 1.6rem;
+  background: #fff;
+
+  position: absolute;
+  margin-top: -25px;
+}
+
+.customer-view > main > section > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.customer-view > main > section > div > span > strong {
+  color: var(--text-darker);
+  margin-right: 5px;
+  letter-spacing: 1px;
+}
+
+.customer-view > main > section > main > div {
+  padding: 10px;
+  background: var(--background);
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+
+.customer-view > main > section > main > div + div {
+  margin-top: 10px;
+}
+
+.customer-view > main > section > main > div > header {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid var(--text-lighter);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.customer-view > main > section > main > div > header > h5 {
+  font-size: 1.5rem;
+}
+
+.customer-view > main > section > main > div > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-size: 1.4rem;
+}
+
+.customer-view > main > section > .customer-activities {
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-view > main > section > .customer-activities > h4 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--text-lighter);
+}
+
+.customer-view > main > section > .customer-activities > div {
+  padding: 10px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.customer-view > main > section > .customer-activities > div > div > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.customer-view > main > section > .customer-activities > div + div {
+  margin-top: 10px;
+}
+
+.customer-view > main > section > .customer-activities > div > div > header > h4 {
+  font-size: 1.5rem;
+}
+
+.customer-view > main > section > .customer-activities > div > div > header > .status {
+  padding: 0px 7px;
+  background: rgba(107, 84, 202, 0.1);
+  border-radius: 3px;
+  border: 1px solid rgba(107, 84, 202, 0.5);
+  color: #6b54ca;
+}
+
+.customer-view > main > section > .customer-activities > div > div > p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 1.4rem;
+  background: #fff;
+}
+
+.customer-view > main > section > .customer-activities > div > div > div {
+  font-size: 1.4rem;
+
+  display: flex;
+  flex-direction: column;
+}

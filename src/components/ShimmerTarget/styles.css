@@ -1,12 +1,6 @@
-.shimmer-target box {
+.shimmer-target span {
   height: 104px;
   width: 100%;
-}
-
-.shimmer-target lines {
-  height: 10px;
-  margin-top: 10px;
-  width: 200px;
 }
 
 .shimmer-target > div {

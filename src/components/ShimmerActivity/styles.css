@@ -1,9 +1,9 @@
-.shimmer-activity box {
+.shimmer-activity span {
   height: 104px;
   width: 100%;
 }
 
-.shimmer-activity lines {
+.shimmer-activity hr {
   height: 10px;
   margin-top: 10px;
   width: 200px;

@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable camelcase */
 /* eslint-disable prefer-object-spread */
 import { all, takeLatest, call, put } from 'redux-saga/effects';
@@ -13,14 +14,16 @@ export function* createActivity({ payload }) {
 
   try {
     const startDate = activity.start_date.split('/');
-    const endDate = activity.start_date.split('/');
+    const endDate = activity.end_date.split('/');
 
     const response = yield call(api.post, 'activity/create', {
       title: activity.title,
       description: activity.description,
+      customer_id: activity.customer_id,
       user_destination_id: activity.user_destination_id,
-      start_date: `${startDate[2]}-${startDate[1]}-${startDate[0]}`,
-      end_date: `${endDate[2]}-${endDate[1]}-${endDate[0]}`,
+      start_date: `${startDate[2]}-${startDate[1]}-${parseInt(startDate[0]) +
+        1}`,
+      end_date: `${endDate[2]}-${endDate[1]}-${parseInt(endDate[0]) + 1}`,
     });
 
     toast.success('Atividade criada com sucesso');

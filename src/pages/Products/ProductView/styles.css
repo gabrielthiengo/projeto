@@ -1,0 +1,93 @@
+.product-view > header {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  margin-bottom: 20px;
+  box-shadow: 0px 7px 13px -11px rgba(0,0,0,0.59);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.product-view > header > div > a {
+  display: flex;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  width: 70px;
+}
+
+.product-view > header > div > a > svg {
+  margin-top: 2px;
+  margin-right: 5px;
+}
+
+.product-view > header > div > section {
+  display: flex;
+  align-items: center;
+}
+
+.product-view > header > div > section > p {
+  font-size: 2rem;
+  margin-top: 3px;
+  margin-left: 10px;
+}
+
+.product-view  header > button > strong {
+  margin-right: 5px;
+}
+
+.product-view > header > div > div {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.product-view > main {
+  display: flex;
+}
+
+.product-view > main > img {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.product-view > main > .product-detail {
+  flex: 1;
+
+  margin-left: 10px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.product-view > main > .product-detail > h4 {
+  position: absolute;
+  padding: 0px 5px;
+  background: #fff;
+
+  font-size: 1.4rem;
+  margin-top: -19px;
+}
+
+.product-view > main > .product-detail > div {
+  margin-top: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.product-view > main > .product-detail > div > p {
+  padding: 10px;
+  background: var(--background);
+  border-radius: 3px;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.product-view > main > .product-detail > div > span {
+  font-size: 1.4rem;
+}

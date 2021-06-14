@@ -3,9 +3,11 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-no-target-blank */
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
-  FaSearch,
+  FaWhatsapp,
+  FaMailBulk,
   FaDownload,
   FaBirthdayCake,
   FaExclamationTriangle,
@@ -97,16 +99,20 @@ function Home() {
     } else {
       dispatch(createActivityRequest(newActivity));
       setToggleModal(false);
+
+      setNewActivity({
+        title: '',
+        description: '',
+        user_destination_id: 0,
+        start_date: '',
+        end_date: '',
+      });
     }
   }
 
   return (
     <div className="home-container">
       <div className="navbar">
-        <div className="input-section">
-          <FaSearch size={20} color="#333" />
-          <input type="text" placeholder="Buscar" />
-        </div>
         <div className="login">
           <div>
             <h4>{profile.name}</h4>
@@ -130,7 +136,7 @@ function Home() {
               response.birthdayMonth?.length !== 0 ? (
                 response.birthdayMonth?.map(customer => {
                   return (
-                    <div key={customer.id}>
+                    <div key={customer.email}>
                       <div className="client-info">
                         <img
                           src={
@@ -143,7 +149,9 @@ function Home() {
                           alt="cliente"
                         />
                         <div>
-                          <h4>{customer.name}</h4>
+                          <Link to={`/cliente/info/${customer.id}/home`}>
+                            <h4>{customer.name}</h4>
+                          </Link>
                           <p>
                             dia{' '}
                             {moment(customer.birthdate).format('DD/MM/YYYY')}
@@ -166,13 +174,17 @@ function Home() {
                                   .replace(' ', '')
                           }`}
                           target="_blank"
-                          data-tip="Ligar"
+                          data-tip={
+                            customer.cellphone !== ''
+                              ? customer.cellphone
+                              : customer.phone
+                          }
                         >
-                          {customer.cellphone !== ''
-                            ? customer.cellphone
-                            : customer.phone}
+                          <FaWhatsapp size={18} color="#04d361" />
                         </a>
-                        <span data-tip="Enviar email">{customer.email}</span>
+                        <span data-tip={customer.email}>
+                          <FaMailBulk size={18} color="#2400b6" />
+                        </span>
                         <ReactTooltip />
                       </div>
                     </div>
@@ -191,7 +203,7 @@ function Home() {
           <br />
           <div className="activities-container">
             <header>
-              <h3>SUAS TAREFAS</h3>
+              <h3>SUAS ATIVIDADES</h3>
               <button
                 className="btn-primary"
                 type="button"
@@ -202,7 +214,7 @@ function Home() {
             </header>
 
             {toggleModal && (
-              <Modal title="Criar nova tarefa">
+              <Modal title="Criar nova atividade">
                 <Form onSubmit={handleSubmit}>
                   <section>
                     <Input
@@ -349,7 +361,7 @@ function Home() {
               ) : (
                 <div className="is-empty">
                   <FaExclamationTriangle size={25} />
-                  <h4>Não existem tarefas ativas</h4>
+                  <h4>Não existem atividades ativas</h4>
                 </div>
               )
             ) : (
