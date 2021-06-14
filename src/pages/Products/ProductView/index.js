@@ -2,11 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-import {
-  FaUsers,
-  FaExclamationTriangle,
-  FaLongArrowAltLeft,
-} from 'react-icons/fa';
+import { FaUsers, FaLongArrowAltLeft } from 'react-icons/fa';
 import CurrencyFormat from 'react-currency-format';
 import Rating from '@material-ui/lab/Rating';
 
