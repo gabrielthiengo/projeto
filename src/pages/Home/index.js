@@ -129,7 +129,7 @@ function Home() {
         <section className="left-container">
           <div className="birthday-container">
             <header>
-              <h3>ANIVERSARIANTES DO MÊS</h3>
+              <h4>ANIVERSARIANTES DO MÊS</h4>
               <FaBirthdayCake size={18} />
             </header>
 
@@ -204,7 +204,7 @@ function Home() {
           <br />
           <div className="activities-container">
             <header>
-              <h3>SUAS ATIVIDADES</h3>
+              <h4>SUAS ATIVIDADES</h4>
               <button
                 className="btn-primary"
                 type="button"

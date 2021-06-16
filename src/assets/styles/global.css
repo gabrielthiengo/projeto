@@ -189,6 +189,7 @@ a:hover {
 .is-empty > h4 {
   margin-top: 10px;
   color: var(--text-darker);
+  font-size: 1.6rem;
 }
 
 table {
