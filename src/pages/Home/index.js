@@ -39,6 +39,7 @@ import ShimmerActivity from '~/components/ShimmerActivity';
 import ShimmerTarget from '~/components/ShimmerTarget';
 import Modal from '~/components/Modal';
 import Input from '~/components/Input';
+import TextArea from '~/components/TextArea';
 
 import './styles.css';
 
@@ -256,9 +257,9 @@ function Home() {
                   </section>
 
                   <div>
-                    <Input
-                      label="Descrição"
+                    <TextArea
                       name="description"
+                      label="Descrição"
                       value={newActivity.description}
                       onChange={e =>
                         setNewActivity({

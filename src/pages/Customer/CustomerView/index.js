@@ -17,6 +17,7 @@ import CurrencyFormat from 'react-currency-format';
 import Loading from '~/components/Loading';
 import Modal from '~/components/Modal';
 import Input from '~/components/Input';
+import TextArea from '~/components/TextArea';
 
 import { createActivityRequest } from '~/store/modules/activity/actions';
 
@@ -287,9 +288,9 @@ function CustomerView() {
             </section>
 
             <div>
-              <Input
-                label="Descrição"
+              <TextArea
                 name="description"
+                label="Descrição"
                 value={newActivity.description}
                 onChange={e =>
                   setNewActivity({
