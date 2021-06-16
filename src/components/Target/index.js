@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -37,7 +38,9 @@ function Target({ target }) {
       <div>
         <h4>{target.name}</h4>
         <p style={{ color: `${endIn <= 0 ? 'red' : ''}` }}>
-          {endIn <= 0 ? 'Termina hoje' : `Termina em ${endIn} dias`}
+          {endIn <= 0
+            ? 'Termina hoje'
+            : `Termina em ${parseInt(endIn) + 1} dias`}
         </p>
         <ExperienceBar
           currExperience={currResult}

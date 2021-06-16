@@ -49,8 +49,9 @@ function CustomerView() {
         setCustomer(response.data.customer);
         setUsers(response.data.users);
         setIsLoading(false);
+        setLoadingState(false);
       })
-      .catch(() => setIsLoading(true));
+      .catch(() => setIsLoading(false));
   }, [loadingState]);
 
   function handleSubmit() {

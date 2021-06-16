@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-import { FaUsers, FaLongArrowAltLeft } from 'react-icons/fa';
+import { FaBoxes, FaLongArrowAltLeft } from 'react-icons/fa';
 import CurrencyFormat from 'react-currency-format';
 import Rating from '@material-ui/lab/Rating';
 
@@ -36,7 +36,7 @@ function ProductView() {
             VOLTAR
           </Link>
           <section>
-            <FaUsers size={25} color="#F14723" />
+            <FaBoxes size={25} color="#F14723" />
             <p>{product?.name.toUpperCase()}</p>
           </section>
         </div>

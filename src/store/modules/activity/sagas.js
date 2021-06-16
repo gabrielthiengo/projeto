@@ -19,8 +19,8 @@ export function* createActivity({ payload }) {
     const response = yield call(api.post, 'activity/create', {
       title: activity.title,
       description: activity.description,
-      customer_id: activity.customer_id,
-      user_destination_id: activity.user_destination_id,
+      customer_id: parseInt(activity.customer_id),
+      user_destination_id: parseInt(activity.user_destination_id),
       start_date: `${startDate[2]}-${startDate[1]}-${parseInt(startDate[0]) +
         1}`,
       end_date: `${endDate[2]}-${endDate[1]}-${parseInt(endDate[0]) + 1}`,

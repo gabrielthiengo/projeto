@@ -1,8 +1,15 @@
+.indicator-container > header {
+  position: fixed;
+  width: calc(100% - 235px);
+}
+
 .indicator-container > header > .temporal-filter {
+  width: 100%;
   padding: 10px;
   border-radius: 3px;
   border: 1px solid var(--border);
   background: #fcfcfc;
+  box-shadow: 0px 7px 13px -11px rgba(0,0,0,0.59);
 
   display: flex;
   justify-content: space-between;
@@ -34,6 +41,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  margin-top: 55px;
 }
 
 .indicator-container > main .chart {
