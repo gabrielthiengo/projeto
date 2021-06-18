@@ -127,81 +127,6 @@ function Home() {
       </div>
       <main>
         <section className="left-container">
-          <div className="birthday-container">
-            <header>
-              <h4>ANIVERSARIANTES DO MÊS</h4>
-              <FaBirthdayCake size={18} />
-            </header>
-
-            {!loading ? (
-              response.birthdayMonth?.length !== 0 ? (
-                response.birthdayMonth?.map(customer => {
-                  return (
-                    <div key={customer.email}>
-                      <div className="client-info">
-                        <img
-                          src={
-                            customer.avatar !== null
-                              ? customer.avatar
-                              : customer.sex === 'M'
-                              ? maleAvatar
-                              : femaleAvatar
-                          }
-                          alt="cliente"
-                        />
-                        <div>
-                          <Link to={`/cliente/info/${customer.id}/home`}>
-                            <h4>{customer.name}</h4>
-                          </Link>
-                          <p>
-                            dia{' '}
-                            {moment(customer.birthdate).format('DD/MM/YYYY')}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="client-data">
-                        <a
-                          href={`https://wa.me/${
-                            customer.cellphone !== ''
-                              ? customer.cellphone
-                                  .replace('-', '')
-                                  .replace('(', '')
-                                  .replace(')', '')
-                                  .replace(' ', '')
-                              : customer.phone
-                                  .replace('-', '')
-                                  .replace('(', '')
-                                  .replace(')', '')
-                                  .replace(' ', '')
-                          }`}
-                          target="_blank"
-                          data-tip={
-                            customer.cellphone !== ''
-                              ? customer.cellphone
-                              : customer.phone
-                          }
-                        >
-                          <FaWhatsapp size={18} color="#04d361" />
-                        </a>
-                        <span data-tip={customer.email}>
-                          <FaMailBulk size={18} color="#2400b6" />
-                        </span>
-                        <ReactTooltip />
-                      </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div className="is-empty">
-                  <FaExclamationTriangle size={25} />
-                  <h4>Não tem aniversariantes no mês</h4>
-                </div>
-              )
-            ) : (
-              <ShimmerTarget />
-            )}
-          </div>
-          <br />
           <div className="activities-container">
             <header>
               <h4>SUAS ATIVIDADES</h4>
@@ -375,7 +300,7 @@ function Home() {
             <div>
               <div>
                 <CurrencyFormat
-                  value={totalSales}
+                  value={parseFloat(totalSales).toFixed(2)}
                   displayType="text"
                   thousandSeparator
                   prefix="R$ "
@@ -416,6 +341,80 @@ function Home() {
             ) : (
               <ShimmerTarget />
             )}
+            <br />
+            <div className="birthday-container">
+              <header>
+                <h4>ANIVERSARIANTES DO MÊS</h4>
+                <FaBirthdayCake size={18} />
+              </header>
+
+              {!loading ? (
+                response.birthdayMonth?.length !== 0 ? (
+                  response.birthdayMonth?.map(customer => {
+                    return (
+                      <div key={customer.email}>
+                        <div className="client-info">
+                          <img
+                            src={
+                              customer.avatar !== null
+                                ? customer.avatar
+                                : customer.sex === 'M'
+                                ? maleAvatar
+                                : femaleAvatar
+                            }
+                            alt="cliente"
+                          />
+                          <div>
+                            <Link to={`/cliente/info/${customer.id}/home`}>
+                              <h4>{customer.name}</h4>
+                            </Link>
+                            <p>
+                              dia: {moment(customer.birthdate).format('DD/MM')}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="client-data">
+                          <a
+                            href={`https://wa.me/${
+                              customer.cellphone !== ''
+                                ? customer.cellphone
+                                    .replace('-', '')
+                                    .replace('(', '')
+                                    .replace(')', '')
+                                    .replace(' ', '')
+                                : customer.phone
+                                    .replace('-', '')
+                                    .replace('(', '')
+                                    .replace(')', '')
+                                    .replace(' ', '')
+                            }`}
+                            target="_blank"
+                            data-tip={
+                              customer.cellphone !== ''
+                                ? customer.cellphone
+                                : customer.phone
+                            }
+                          >
+                            <FaWhatsapp size={18} color="#04d361" />
+                          </a>
+                          <span data-tip={customer.email}>
+                            <FaMailBulk size={18} color="#2400b6" />
+                          </span>
+                          <ReactTooltip />
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="is-empty">
+                    <FaExclamationTriangle size={25} />
+                    <h4>Não tem aniversariantes no mês</h4>
+                  </div>
+                )
+              ) : (
+                <ShimmerTarget />
+              )}
+            </div>
           </section>
         </section>
       </main>

@@ -82,3 +82,7 @@ export const removeMask = value => {
     .replace('.', '')
     .replace('-', '');
 };
+
+export const checkUserRole = role => {
+  return role === 'superuser' || role === 'admin';
+};

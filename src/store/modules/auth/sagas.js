@@ -19,6 +19,7 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
+    toast.success(`Seja bem vindo(a) novamente, ${user.name}`);
 
     history.push('/');
   } catch (err) {
@@ -54,6 +55,7 @@ export function setToken({ payload }) {
 }
 export function signOut() {
   history.push('/');
+  toast.success('Logout realizado com sucesso.');
 }
 
 export default all([

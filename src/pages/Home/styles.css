@@ -153,7 +153,7 @@
   color: var(--primary-lighter) !important;
 }
 
-.left-container > .birthday-container > header,
+.right-container > section > .birthday-container > header,
 .left-container > .activities-container > header {
   display: flex;
   align-items: center;
@@ -179,16 +179,16 @@
   margin-top: 10px;
 }
 
-.left-container > .birthday-container > header > h4,
-.left-container > .birthday-container > header > svg,
-.left-container > .activities-container > header > h4,
-.left-container > .activities-container > header > svg {
+.right-container > section > .birthday-container > header > h4,
+.right-container > section > .birthday-container > header > svg,
+.right-container > .activities-container > header > h4,
+.right-container > .activities-container > header > svg {
   font-size: 1.5rem;
   letter-spacing: 1px;
   color: var(--text-darker);
 }
 
-.left-container > .birthday-container > div {
+.right-container > section > .birthday-container > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -198,35 +198,35 @@
   border-radius: 5px;
 }
 
-.left-container > .birthday-container > div > .client-info {
+.right-container > section > .birthday-container > div > .client-info {
   display: flex;
   align-items: center;
   flex: 1;
 }
 
-.left-container > .birthday-container > div > .client-info img {
+.right-container > section > .birthday-container > div > .client-info img {
   width: 55px;
   margin-right: 10px;
   border-radius: 50px;
 }
 
-.left-container > .birthday-container > div > .client-info h4 {
+.right-container > section > .birthday-container > div > .client-info h4 {
   font-size: 1.7rem;
 }
 
-.left-container > .birthday-container > div > .client-info p {
+.right-container > section > .birthday-container > div > .client-info p {
   font-size: 1.4rem;
   color: var(--text-darker);
 }
 
-.left-container > .birthday-container > div > .client-data {
+.right-container > section > .birthday-container > div > .client-data {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
-.left-container > .birthday-container > div > .client-data > a,
-.left-container > .birthday-container > div > .client-data > span {
+.right-container > section > .birthday-container > div > .client-data > a,
+.right-container > section > .birthday-container > div > .client-data > span {
   text-align: end;
   font-size: 1.4rem;
 
@@ -234,11 +234,11 @@
   transition: .2s;
 }
 
-.left-container > .birthday-container > div > .client-data > span:hover {
+.right-container > section > .birthday-container > div > .client-data > span:hover {
   color: var(--primary-lighter);
 }
 
-.left-container > .birthday-container > div + div {
+.right-container > section > .birthday-container > div + div {
   margin-top: 10px;
 }
 
