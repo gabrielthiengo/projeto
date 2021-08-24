@@ -181,8 +181,8 @@
 
 .right-container > section > .birthday-container > header > h4,
 .right-container > section > .birthday-container > header > svg,
-.right-container > .activities-container > header > h4,
-.right-container > .activities-container > header > svg {
+.left-container > .activities-container > header > h4,
+.left-container > .activities-container > header > svg {
   font-size: 1.5rem;
   letter-spacing: 1px;
   color: var(--text-darker);

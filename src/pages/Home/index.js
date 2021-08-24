@@ -19,6 +19,10 @@ import { Form } from '@unform/web';
 import { useDispatch, useSelector } from 'react-redux';
 import CurrencyFormat from 'react-currency-format';
 import moment from 'moment';
+import {
+  ActivityModel,
+  verifyRequiredFieldsActivity,
+} from '~/models/ActivityModel';
 import { updateLoadingStatus } from '../../store/modules/loading/actions';
 import {
   updateActivityRequest,
@@ -54,13 +58,7 @@ function Home() {
   const [isUpdate, setIsUpdate] = useState(false);
   const [toggleModal, setToggleModal] = useState(false);
 
-  const [newActivity, setNewActivity] = useState({
-    title: '',
-    description: '',
-    user_destination_id: 0,
-    start_date: '',
-    end_date: '',
-  });
+  const [newActivity, setNewActivity] = useState(ActivityModel);
 
   const date = formatDate();
 
@@ -87,27 +85,15 @@ function Home() {
   }
 
   function handleSubmit() {
-    if (newActivity.title === '') {
-      toast.error('O título deve ser informado');
-    } else if (newActivity.description === '') {
-      toast.error('A descrição deve ser informado');
-    } else if (newActivity.user_destination_id === 0) {
-      toast.error('O usuário deve ser informado');
-    } else if (newActivity.start_date === '') {
-      toast.error('A data de início deve ser informada');
-    } else if (newActivity.end_date === '') {
-      toast.error('A data de fim deve ser informada');
+    const verifiedActivity = verifyRequiredFieldsActivity(newActivity);
+
+    if (verifiedActivity.status === 'FAILURE') {
+      toast.error(verifiedActivity.message);
     } else {
       dispatch(createActivityRequest(newActivity));
       setToggleModal(false);
 
-      setNewActivity({
-        title: '',
-        description: '',
-        user_destination_id: 0,
-        start_date: '',
-        end_date: '',
-      });
+      setNewActivity(ActivityModel);
     }
   }
 
@@ -155,7 +141,7 @@ function Home() {
                       }
                     />
                     <div className="input-content">
-                      <label htmlFor="user_destination_id">Usuário</label>
+                      <label htmlFor="user_destination_id">Responsável</label>
                       <div className="input-block">
                         <select
                           name="user_destination_id"
@@ -299,13 +285,14 @@ function Home() {
           <div className="card-container">
             <div>
               <div>
-                <CurrencyFormat
-                  value={parseFloat(totalSales).toFixed(2)}
-                  displayType="text"
-                  thousandSeparator
-                  prefix="R$ "
-                  renderText={value => <h4>{value}</h4>}
-                />
+                <h4>
+                  {totalSales >= 0
+                    ? totalSales.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                      })
+                    : ''}
+                </h4>
                 <p>Vendas</p>
               </div>
               <img src={waveDark} alt="" />

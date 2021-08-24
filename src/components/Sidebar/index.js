@@ -146,7 +146,7 @@ function Sidebar() {
             )}
             {checkUserRole(profile.roles.type) && (
               <div className="second-item">
-                <Link to="/">
+                <Link to="/metas" onClick={() => setDisplay(false)}>
                   <strong>-</strong>
                   <p>METAS</p>
                 </Link>

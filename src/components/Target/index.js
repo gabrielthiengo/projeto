@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable radix */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -16,7 +17,7 @@ function Target({ target }) {
 
   const percentToFinish = Math.round(currResult * 100) / finishTarget;
   const endIn = moment
-    .duration(currDate.diff(new Date()))
+    .duration(currDate.diff(moment(target.start_date, 'YYYY-MM-DD')))
     .asDays()
     .toFixed(0);
 
@@ -38,13 +39,16 @@ function Target({ target }) {
       <div>
         <h4>{target.name}</h4>
         <p style={{ color: `${endIn <= 0 ? 'red' : ''}` }}>
-          {endIn <= 0
+          {endIn < 0
+            ? 'Meta finalizada'
+            : endIn === 0
             ? 'Termina hoje'
-            : `Termina em ${parseInt(endIn) + 1} dias`}
+            : `Termina em ${parseInt(endIn)} dias`}
         </p>
         <ExperienceBar
           currExperience={currResult}
           experienceToFinish={finishTarget}
+          type={target.type}
         />
       </div>
 

@@ -202,33 +202,39 @@ function CustomerView() {
                       </span>
                       <span>
                         FRETE:{' '}
-                        <CurrencyFormat
-                          value={order.shipping_total}
-                          displayType="text"
-                          thousandSeparator
-                          prefix="R$ "
-                          renderText={value => <strong>{value}</strong>}
-                        />
+                        {order.shipping_total !== null && (
+                          <CurrencyFormat
+                            value={order.shipping_total}
+                            displayType="text"
+                            thousandSeparator
+                            prefix="R$ "
+                            renderText={value => <strong>{value}</strong>}
+                          />
+                        )}
                       </span>
                       <span>
                         DESCONTO:{' '}
-                        <CurrencyFormat
-                          value={order.discount_total}
-                          displayType="text"
-                          thousandSeparator
-                          prefix="R$ "
-                          renderText={value => <strong>{value}</strong>}
-                        />
+                        {order.discount_total !== null && (
+                          <CurrencyFormat
+                            value={order.discount_total}
+                            displayType="text"
+                            thousandSeparator
+                            prefix="R$ "
+                            renderText={value => <strong>{value}</strong>}
+                          />
+                        )}
                       </span>
                       <span>
                         TOTAL:{' '}
-                        <CurrencyFormat
-                          value={order.total}
-                          displayType="text"
-                          thousandSeparator
-                          prefix="R$ "
-                          renderText={value => <strong>{value}</strong>}
-                        />
+                        {order.total !== null && (
+                          <CurrencyFormat
+                            value={order.total}
+                            displayType="text"
+                            thousandSeparator
+                            prefix="R$ "
+                            renderText={value => <strong>{value}</strong>}
+                          />
+                        )}
                       </span>
                     </div>
                   </div>
@@ -261,7 +267,7 @@ function CustomerView() {
                 }
               />
               <div className="input-content">
-                <label htmlFor="user_destination_id">Usuário</label>
+                <label htmlFor="user_destination_id">Responsável</label>
                 <div className="input-block">
                   <select
                     name="user_destination_id"

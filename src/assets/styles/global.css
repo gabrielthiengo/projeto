@@ -243,3 +243,48 @@ table > tbody > tr > td > img {
 .MuiButtonBase-root {
   font-size: 1.4rem !important;
 }
+
+.page-container > header {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  margin-bottom: 20px;
+  box-shadow: 0px 7px 13px -11px rgba(0,0,0,0.59);
+}
+.page-container > header > div {
+  display: flex;
+  align-items: center;
+}
+.page-container > header > div > p {
+  font-size: 2rem;
+  margin-top: 3px;
+  margin-left: 10px;
+}
+
+.page-container > header > .search {
+  margin-top: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-container > header > .search > input {
+  width: 500px;
+  border: none;
+  border-radius: 3px;
+  background: var(--background);
+  padding: 3px 12px;
+  margin-right: 10px;
+  border: 1px solid transparent;
+
+  transition: .2s;
+}
+
+.page-container > header > .search > button + button {
+  margin-left: 10px;
+}
+
+.page-container > header > .search > input:focus {
+  border: 1px solid var(--primary);
+}

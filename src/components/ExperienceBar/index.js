@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 
-function ExperienceBar({ currExperience, experienceToFinish }) {
+function ExperienceBar({ currExperience, experienceToFinish, type }) {
   const percentToFinish = Math.round(currExperience * 100) / experienceToFinish;
 
   return (
@@ -28,7 +28,14 @@ function ExperienceBar({ currExperience, experienceToFinish }) {
           </span>
         )}
       </div>
-      <span>{experienceToFinish}</span>
+      <span>
+        {type === 'vendas'
+          ? `${experienceToFinish.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}`
+          : experienceToFinish}
+      </span>
     </div>
   );
 }
@@ -38,4 +45,5 @@ export default ExperienceBar;
 ExperienceBar.propTypes = {
   currExperience: PropTypes.number.isRequired,
   experienceToFinish: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
 };

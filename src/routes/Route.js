@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { Route, Redirect } from 'react-router-dom';
 
 import DefaultLayout from '~/pages/_layouts/default';
@@ -12,8 +13,12 @@ export default function RouteWrapper({
   isRegister,
   ...rest
 }) {
-  const { signed } = store.getState().auth;
-  if (!signed && isPrivate) {
+  const { signed, signedDate } = store.getState().auth;
+
+  const currDate = moment(new Date());
+  const siginDate = moment(signedDate);
+
+  if ((!signed && isPrivate) || siginDate.diff(currDate, 'days') > 6) {
     return <Redirect to="/signin" />;
   }
 

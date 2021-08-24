@@ -37,7 +37,7 @@ function ProductList() {
   }
 
   return (
-    <div className="product-container">
+    <div className="page-container product-container">
       <header>
         <div>
           <FaBoxes size={25} color="#F14723" />
