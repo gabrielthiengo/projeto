@@ -33,8 +33,17 @@ function Activity({ activities, status, handle }) {
                   : status === 4
                   ? 'rgba(65, 65, 77, 0.05)'
                   : 'rgba(4, 211, 97, 0.05)',
+              border:
+                moment(activity.start_date).diff(new Date(), 'days') < 0 &&
+                status !== 4 &&
+                status !== 5
+                  ? '1px solid #ffafaf'
+                  : '1px solid transparent',
             }}
           >
+            {moment(activity.start_date).diff(new Date(), 'days') < 0 &&
+              status !== 4 &&
+              status !== 5 && <p className="delayed">Tarefa Atrasada</p>}
             <header>
               <h3>{activity.title}</h3>
 

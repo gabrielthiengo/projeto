@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import { FaRegEdit, FaBoxes, FaExclamationTriangle } from 'react-icons/fa';
 import Rating from '@material-ui/lab/Rating';
-import CurrencyFormat from 'react-currency-format';
 import { Pagination } from '@material-ui/lab/';
 import Loading from '~/components/Loading';
 
@@ -76,7 +75,7 @@ function ProductList() {
             <thead>
               <tr>
                 <th>AÇÕES</th>
-                <th>ID</th>
+                <th>CÓDIGO</th>
                 <th>NOME</th>
                 <th>PREÇO</th>
                 <th>TOTAL VENDIDO</th>
@@ -96,16 +95,20 @@ function ProductList() {
                           <FaRegEdit size={20} />
                         </Link>
                       </td>
-                      <td>#00{product.id}</td>
+                      <td>{product.w_product_id}</td>
                       <td>{product.name}</td>
                       <td>
-                        <CurrencyFormat
-                          value={product.price}
-                          displayType="text"
-                          thousandSeparator
-                          prefix="R$ "
-                          renderText={value => <p>{value}</p>}
-                        />
+                        <p>
+                          {product.price > 0
+                            ? parseFloat(product.price).toLocaleString(
+                                'pt-BR',
+                                {
+                                  style: 'currency',
+                                  currency: 'BRL',
+                                }
+                              )
+                            : 'R$ 0,00'}
+                        </p>
                       </td>
                       <td>
                         <p>{product.total_sales}</p>

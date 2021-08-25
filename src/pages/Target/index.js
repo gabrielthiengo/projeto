@@ -178,10 +178,11 @@ function Target() {
             <thead>
               <tr>
                 <th>AÇÕES</th>
-                <th>ID</th>
+                <th>CÓDIGO</th>
                 <th>STATUS</th>
                 <th>NOME</th>
                 <th>ALVO</th>
+                <th>OBTIDO</th>
                 <th>TIPO</th>
                 <th>INÍCIO</th>
                 <th>FIM</th>
@@ -235,7 +236,27 @@ function Target() {
                       </td>
                       <td>{target.name}</td>
                       <td>
-                        <p>{target.value}</p>
+                        <p>
+                          {target.type === 'vendas' && target.value > 0
+                            ? parseFloat(target.value).toLocaleString('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL',
+                              })
+                            : target.value}
+                        </p>
+                      </td>
+                      <td>
+                        <p>
+                          {target.type === 'vendas' && target.curr_result > 0
+                            ? parseFloat(target.curr_result).toLocaleString(
+                                'pt-BR',
+                                {
+                                  style: 'currency',
+                                  currency: 'BRL',
+                                }
+                              )
+                            : target.curr_result}
+                        </p>
                       </td>
                       <td>
                         <p>{target.type}</p>
@@ -284,6 +305,10 @@ function Target() {
               <Input
                 label="Título"
                 name="name"
+                disabled={
+                  newTarget.status === 'Alcançado' ||
+                  (newTarget.status === 'Finalizado' && 'disabled')
+                }
                 value={newTarget.name}
                 onChange={e =>
                   setNewTarget({
@@ -298,6 +323,10 @@ function Target() {
                   <select
                     name="type"
                     id="type"
+                    disabled={
+                      newTarget.status === 'Alcançado' ||
+                      (newTarget.status === 'Finalizado' && 'disabled')
+                    }
                     value={newTarget.type}
                     onChange={e =>
                       setNewTarget({
@@ -319,6 +348,10 @@ function Target() {
                 name="value"
                 label="Alvo"
                 type="number"
+                disabled={
+                  newTarget.status === 'Alcançado' ||
+                  (newTarget.status === 'Finalizado' && 'disabled')
+                }
                 value={newTarget.value}
                 onChange={e =>
                   setNewTarget({
@@ -336,6 +369,10 @@ function Target() {
                   <CurrencyFormat
                     format="##/##/####"
                     mask="_"
+                    disabled={
+                      newTarget.status === 'Alcançado' ||
+                      (newTarget.status === 'Finalizado' && 'disabled')
+                    }
                     value={newTarget.start_date}
                     onChange={e => {
                       const date = e.target.value;
@@ -364,6 +401,10 @@ function Target() {
                   <CurrencyFormat
                     format="##/##/####"
                     mask="_"
+                    disabled={
+                      newTarget.status === 'Alcançado' ||
+                      (newTarget.status === 'Finalizado' && 'disabled')
+                    }
                     value={newTarget.end_date}
                     onChange={e =>
                       setNewTarget({
@@ -393,7 +434,14 @@ function Target() {
               >
                 Cancelar
               </button>
-              <button className="btn-primary" type="submit">
+              <button
+                className="btn-primary"
+                type="submit"
+                disabled={
+                  newTarget.status === 'Alcançado' ||
+                  (newTarget.status === 'Finalizado' && 'disabled')
+                }
+              >
                 {isUpdate ? 'Atualizar' : 'Salvar'}
               </button>
             </footer>

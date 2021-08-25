@@ -55,13 +55,12 @@ function ProductView() {
             <span>TOTAL VENDIDO: {product?.total_sales}</span>
             <span>
               PREÇO:{' '}
-              <CurrencyFormat
-                value={product?.price}
-                displayType="text"
-                thousandSeparator
-                prefix="R$ "
-                renderText={value => <span>{value}</span>}
-              />
+              {product?.price >= 0
+                ? parseFloat(product.price).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })
+                : 'R$ 0,00'}
             </span>
             <span>
               PREÇO DE VENDA:{' '}

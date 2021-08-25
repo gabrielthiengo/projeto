@@ -26,20 +26,26 @@ function Target({ target }) {
       className="progress"
       style={{
         background: `${
-          target.status === 'Alcançada' ? 'rgba(4,211,97,0.1)' : ''
+          target.status === 'Alcançado' ? 'rgba(4,211,97,0.1)' : ''
         }`,
       }}
     >
       <span>
         <FaChartLine
           size={30}
-          color={target.status === 'Alcançada' ? '#04d361' : ''}
+          color={target.status === 'Alcançado' ? '#04d361' : ''}
         />
       </span>
       <div>
         <h4>{target.name}</h4>
         <p style={{ color: `${endIn <= 0 ? 'red' : ''}` }}>
-          {endIn < 0
+          {target.status === 'Finalizado'
+            ? 'Finalizado'
+            : target.status === 'Alcançado'
+            ? 'Alcançado'
+            : target.status === 'A Iniciar'
+            ? `Inicia dia ${moment(target.start_date).format('DD/MM/YYYY')}`
+            : endIn < 0
             ? 'Meta finalizada'
             : endIn === 0
             ? 'Termina hoje'
