@@ -11,6 +11,7 @@ import CustomerView from '../pages/Customer/CustomerView';
 import ProductList from '../pages/Products/ProductList';
 import ProductView from '../pages/Products/ProductView';
 import Target from '../pages/Target';
+import Sheet from '../pages/Sheet';
 
 export default function Routes() {
   return (
@@ -21,6 +22,7 @@ export default function Routes() {
 
       <Route path="/indicadores" component={Indicators} isPrivate />
       <Route path="/metas" component={Target} isPrivate />
+      <Route path="/planilhas" component={Sheet} isPrivate />
       <Route path="/clientes" exact component={CustomerList} isPrivate />
       <Route
         path="/cliente/info/:customerId/:route"

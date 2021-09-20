@@ -10,6 +10,10 @@
   justify-content: space-between;
 }
 
+.product-view > header > div {
+  width: 100%;
+}
+
 .product-view > header > div > a {
   display: flex;
   font-size: 1.5rem;
@@ -25,9 +29,15 @@
 .product-view > header > div > section {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-.product-view > header > div > section > p {
+.product-view > header > div > section > div {
+  display: flex;
+  align-items: center;
+}
+
+.product-view > header > div > section > div > p {
   font-size: 2rem;
   margin-top: 3px;
   margin-left: 10px;
@@ -90,4 +100,20 @@
 
 .product-view > main > .product-detail > div > span {
   font-size: 1.4rem;
+}
+
+.product-view > .modal-overlay > .modal-container {
+  max-width: 1000px;
+}
+
+.product-view > .modal-overlay > .modal-container > section > form > section {
+  flex-direction: column;
+}
+
+.product-view > .modal-overlay > .modal-container > section > form > section > .row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 15px;
+
+  width: 100%;
 }

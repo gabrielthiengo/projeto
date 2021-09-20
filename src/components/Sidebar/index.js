@@ -9,6 +9,7 @@ import {
   FaSearch,
   FaChartPie,
   FaCogs,
+  FaTable,
   FaSignOutAlt,
 } from 'react-icons/fa';
 
@@ -48,9 +49,23 @@ function Sidebar() {
             </Link>
           </div>
           <div className={`menu-item ${isActive === 1 ? 'active' : ''} `}>
+            <Link
+              to="/planilhas"
+              onClick={() => {
+                setDisplay(false);
+                setIsActive(1);
+              }}
+            >
+              <div>
+                <FaTable size={18} />
+              </div>
+              <p>PLANILHAS</p>
+            </Link>
+          </div>
+          <div className={`menu-item ${isActive === 2 ? 'active' : ''} `}>
             <div
               onClick={() => {
-                setIsActive(1);
+                setIsActive(2);
                 setSelectedTab(2);
                 if (display && selectedTab === 2) {
                   setDisplay(!display);

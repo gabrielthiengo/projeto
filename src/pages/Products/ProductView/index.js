@@ -1,10 +1,15 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Form } from '@unform/web';
 
 import { FaBoxes, FaLongArrowAltLeft } from 'react-icons/fa';
 import CurrencyFormat from 'react-currency-format';
 import Rating from '@material-ui/lab/Rating';
+import Modal from '~/components/Modal';
+import Input from '~/components/Input';
+import TextArea from '~/components/TextArea';
 
 import './styles.css';
 
@@ -15,6 +20,7 @@ function ProductView() {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [rating, setRating] = useState('0');
+  const [toggleModal, setToggleModal] = useState(false);
 
   useEffect(() => {
     api
@@ -27,6 +33,8 @@ function ProductView() {
       .catch(() => setIsLoading(true));
   }, [isLoading]);
 
+  async function handleSubmit() {}
+
   return (
     <div className="product-view">
       <header>
@@ -36,8 +44,17 @@ function ProductView() {
             VOLTAR
           </Link>
           <section>
-            <FaBoxes size={25} color="#F14723" />
-            <p>{product?.name.toUpperCase()}</p>
+            <div>
+              <FaBoxes size={25} color="#F14723" />
+              <p>{product?.name.toUpperCase()}</p>
+            </div>
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => setToggleModal(true)}
+            >
+              Editar
+            </button>
           </section>
         </div>
       </header>
@@ -79,6 +96,169 @@ function ProductView() {
           </div>
         </div>
       </main>
+      {toggleModal && (
+        <Modal title="Editar Produto">
+          <Form onSubmit={handleSubmit}>
+            <section>
+              <div className="row">
+                <Input
+                  name="value"
+                  label="Nome"
+                  type="text"
+                  value={product.name}
+                  onChange={e =>
+                    setProduct({
+                      ...product,
+                      name: e.target.value,
+                    })
+                  }
+                />
+                <div className="input-content">
+                  <label htmlFor="type">Tipo</label>
+                  <div className="input-block">
+                    <select
+                      name="type"
+                      id="type"
+                      value={product.type}
+                      onChange={e =>
+                        setProduct({
+                          ...product,
+                          type: e.target.value,
+                        })
+                      }
+                    >
+                      <option value={0}>Selecione</option>
+                      <option value="vendas">Meta de vendas</option>
+                      <option value="clientes">Prospecção de clientes</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="input-content">
+                  <label htmlFor="type">Status</label>
+                  <div className="input-block">
+                    <select
+                      name="type"
+                      id="type"
+                      value={product.type}
+                      onChange={e =>
+                        setProduct({
+                          ...product,
+                          type: e.target.value,
+                        })
+                      }
+                    >
+                      <option value={0}>Selecione</option>
+                      <option value="vendas">Meta de vendas</option>
+                      <option value="clientes">Prospecção de clientes</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="input-content">
+                  <label htmlFor="type">Visibilidade</label>
+                  <div className="input-block">
+                    <select
+                      name="type"
+                      id="type"
+                      value={product.type}
+                      onChange={e =>
+                        setProduct({
+                          ...product,
+                          type: e.target.value,
+                        })
+                      }
+                    >
+                      <option value={0}>Selecione</option>
+                      <option value="vendas">Meta de vendas</option>
+                      <option value="clientes">Prospecção de clientes</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <TextArea
+                  name="value"
+                  label="Descrição"
+                  type="text"
+                  value={product.short_description}
+                  onChange={e =>
+                    setProduct({
+                      ...product,
+                      short_description: e.target.value,
+                    })
+                  }
+                />
+              </div>
+
+              <div className="row-4-1fr">
+                <Input
+                  name="value"
+                  label="SKU"
+                  type="text"
+                  value={product.name}
+                  onChange={e =>
+                    setProduct({
+                      ...product,
+                      name: e.target.value,
+                    })
+                  }
+                />
+                <Input
+                  name="value"
+                  label="Preço"
+                  type="text"
+                  value={product.name}
+                  onChange={e =>
+                    setProduct({
+                      ...product,
+                      name: e.target.value,
+                    })
+                  }
+                />
+                <Input
+                  name="value"
+                  label="Preço Regular"
+                  type="text"
+                  value={product.name}
+                  onChange={e =>
+                    setProduct({
+                      ...product,
+                      name: e.target.value,
+                    })
+                  }
+                />
+                <Input
+                  name="value"
+                  label="Preço de Venda"
+                  type="text"
+                  value={product.name}
+                  onChange={e =>
+                    setProduct({
+                      ...product,
+                      name: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </section>
+            <footer>
+              <button
+                type="button"
+                className="btn-secondary"
+                onClick={() => setToggleModal(false)}
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={() => setToggleModal(true)}
+              >
+                Salvar
+              </button>
+            </footer>
+          </Form>
+        </Modal>
+      )}
     </div>
   );
 }

@@ -14,6 +14,11 @@ import {
 } from 'react-icons/fa';
 import CurrencyFormat from 'react-currency-format';
 
+import {
+  ActivityModel,
+  verifyRequiredFieldsActivity,
+} from '~/models/ActivityModel';
+
 import Loading from '~/components/Loading';
 import Modal from '~/components/Modal';
 import Input from '~/components/Input';
@@ -33,14 +38,7 @@ function CustomerView() {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingState, setLoadingState] = useState(false);
   const [toggleModal, setToggleModal] = useState(false);
-  const [newActivity, setNewActivity] = useState({
-    title: '',
-    description: '',
-    user_destination_id: 0,
-    customer_id: customerId,
-    start_date: '',
-    end_date: '',
-  });
+  const [newActivity, setNewActivity] = useState(ActivityModel);
 
   useEffect(() => {
     setIsLoading(true);
@@ -56,28 +54,18 @@ function CustomerView() {
   }, [loadingState]);
 
   function handleSubmit() {
-    if (newActivity.title === '') {
-      toast.error('O título deve ser informado');
-    } else if (newActivity.description === '') {
-      toast.error('A descrição deve ser informado');
-    } else if (newActivity.user_destination_id === 0) {
-      toast.error('O usuário deve ser informado');
-    } else if (newActivity.start_date === '') {
-      toast.error('A data de início deve ser informada');
-    } else if (newActivity.end_date === '') {
-      toast.error('A data de fim deve ser informada');
+    const verifiedActivity = verifyRequiredFieldsActivity(newActivity);
+
+    if (verifiedActivity.status === 'FAILURE') {
+      toast.error(verifiedActivity.message);
     } else {
+      newActivity.customer_id = customerId;
+
       dispatch(createActivityRequest(newActivity));
       setToggleModal(false);
       setLoadingState(true);
 
-      setNewActivity({
-        title: '',
-        description: '',
-        user_destination_id: 0,
-        start_date: '',
-        end_date: '',
-      });
+      setNewActivity(ActivityModel);
     }
   }
 

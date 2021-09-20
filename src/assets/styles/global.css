@@ -294,3 +294,11 @@ table > tbody > tr > td > img {
 .page-container > header > .search > input:focus {
   border: 1px solid var(--primary);
 }
+
+.row-4-1fr {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+
+  width: 100%;
+}
