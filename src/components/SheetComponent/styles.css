@@ -53,7 +53,7 @@
 .sheetComponent-container > main > .row-body > .actions {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .sheetComponent-container > footer {
