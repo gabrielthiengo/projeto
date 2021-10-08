@@ -2,16 +2,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Sidebar from '~/components/Sidebar';
-
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import './styles.css';
+
+import Navbar from '~/components/Navbar';
 
 export default function DefaultLayout({ children }) {
   return (
     <div className="wrapper">
-      <Sidebar />
-      <div className="wrapper-default">{children}</div>
+      <Navbar />
+      {children}
     </div>
   );
 }

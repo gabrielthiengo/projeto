@@ -1,0 +1,86 @@
+.intro-container {
+  position: relative;
+}
+
+.intro-container > img {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+  opacity: .25 !important;
+}
+
+.intro-container > div {
+  width: 100%;
+  height: 100vh;
+  position: absolute !important;
+  z-index: 999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-container > div > h2 {
+  font-family: 'Nunito', sans-serif !important;
+  font-size: 9.6rem;
+  color: #444235!important;
+  line-height: 1.3em;
+}
+
+.intro-container > div > h4 {
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  line-height: 2em;
+  font-size: 2rem;
+
+  margin-top: 100px;
+  margin-bottom: 15px;
+}
+
+.intro-container > div > button {
+  border: none;
+  background: #d1af83;
+  color: #fff;
+  text-transform: uppercase;
+
+  padding: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(7,51,84,0.17)!important;
+
+  transition: .3s;
+}
+
+.intro-container > div > button:hover {
+  letter-spacing: 1.5px;
+}
+
+@media (max-width: 780px) {
+  .intro-container > div > h2 {
+    font-size: 5.6rem;
+  }
+
+  .intro-container > div > h4 {
+    font-size: 1.5rem;
+  }
+
+  .intro-container > div > button {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 455px) {
+  .intro-container > div > h2 {
+    font-size: 3.6rem;
+  }
+
+  .intro-container > div > h4 {
+    font-size: 1.5rem;
+  }
+
+  .intro-container > div > button {
+    padding: 10px;
+  }
+}
+
