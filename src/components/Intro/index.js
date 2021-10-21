@@ -1,12 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 
-function Intro() {
+function Intro({ husband, wife, coverPhoto }) {
   return (
     <div id="intro" className="intro-container">
       <div>
-        <h2 className="tracking-in-expand">Gabriel & Mariana</h2>
+        <h2 className="tracking-in-expand">
+          {husband} & {wife}
+        </h2>
         <h4 className="slide-top">Estão se casando</h4>
         <button
           className="slide-top"
@@ -19,13 +22,15 @@ function Intro() {
           Que tal presentea-los?
         </button>
       </div>
-      <img
-        className="text-focus-in"
-        src="https://db3313cebad1db0a132c-6b847177b4f7a7412ca083eff6571c86.ssl.cf1.rackcdn.com/PostImagem/28507/1.jpg"
-        alt=""
-      />
+      <img className="text-focus-in" src={coverPhoto} alt="cover" />
     </div>
   );
 }
 
 export default Intro;
+
+Intro.propTypes = {
+  husband: PropTypes.string.isRequired,
+  wife: PropTypes.string.isRequired,
+  coverPhoto: PropTypes.string.isRequired,
+};

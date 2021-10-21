@@ -11,34 +11,43 @@ function Navbar() {
   const displaySize = document.documentElement.scrollWidth;
 
   function handleScroll() {
-    console.log(document.documentElement.scrollTop);
-
     if (document.documentElement.scrollTop < 700) {
       document.getElementById('home').classList.add('active');
       document.getElementById('about-nav').classList.remove('active');
+      document.getElementById('confirmation-nav').classList.remove('active');
     } else if (
       document.documentElement.scrollTop >= 700 &&
-      document.documentElement.scrollTop < 1900
+      document.documentElement.scrollTop < 1700
     ) {
       document.getElementById('home').classList.remove('active');
       document.getElementById('about-nav').classList.add('active');
       document.getElementById('countdown-nav').classList.remove('active');
+      document.getElementById('confirmation-nav').classList.remove('active');
     } else if (
-      document.documentElement.scrollTop >= 1900 &&
+      document.documentElement.scrollTop >= 1700 &&
       document.documentElement.scrollTop < 2700
     ) {
       document.getElementById('about-nav').classList.remove('active');
       document.getElementById('countdown-nav').classList.add('active');
       document.getElementById('details-nav').classList.remove('active');
+      document.getElementById('confirmation-nav').classList.remove('active');
     } else if (
       document.documentElement.scrollTop >= 2700 &&
-      document.documentElement.scrollTop < 3500
+      document.documentElement.scrollTop < 3200
     ) {
       document.getElementById('countdown-nav').classList.remove('active');
       document.getElementById('details-nav').classList.add('active');
       document.getElementById('gift-nav').classList.remove('active');
-    } else if (document.documentElement.scrollTop >= 3500) {
+      document.getElementById('confirmation-nav').classList.remove('active');
+    } else if (
+      document.documentElement.scrollTop > 3200 &&
+      document.documentElement.scrollTop < 3800
+    ) {
       document.getElementById('details-nav').classList.remove('active');
+      document.getElementById('confirmation-nav').classList.add('active');
+      document.getElementById('gift-nav').classList.remove('active');
+    } else if (document.documentElement.scrollTop > 3800) {
+      document.getElementById('confirmation-nav').classList.remove('active');
       document.getElementById('gift-nav').classList.add('active');
     }
 
@@ -76,7 +85,7 @@ function Navbar() {
 
   return (
     <div id="navbar" className="main-header">
-      <h1>Gabriel & Mariana</h1>
+      <h1>Casamentos.com</h1>
 
       {!displayMenu ? (
         <FaBars
@@ -156,12 +165,25 @@ function Navbar() {
           Detalhes
         </p>
         <p
+          id="confirmation-nav"
+          onClick={() => {
+            navigationToComponent('confirmation');
+            toggleClassList('confirmation-nav');
+
+            if (displaySize <= 900) {
+              setDisplayMenu(false);
+            }
+          }}
+        >
+          Presença
+        </p>
+        <p
           id="gift-nav"
           onClick={() => {
             navigationToComponent('gifts');
             toggleClassList('gift-nav');
 
-            if (displaySize <= 900) {
+            if (displaySize <= 1200) {
               setDisplayMenu(false);
             }
           }}

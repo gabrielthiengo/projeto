@@ -1,31 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
 import { FaCalendarCheck, FaCloudSun } from 'react-icons/fa';
 
 import './styles.css';
 
-function Dayoff() {
+function Dayoff({ address, schedule, date }) {
+  const weddingDay = moment(date);
+
   return (
     <div id="dayoff" className="dayoff-container">
       <h2>O Grande Dia</h2>
       <p>
-        Aenean tristique eros eget facilisis pretium. Maecenas risus leo,
-        maximus nec faucibus vitae, varius non elit. Nunc eget nibh eget felis
-        tristique pretium. Duis sed condimentum neque.
+        Nada é tão forte como esta cumplicidade que define nosso amor como algo
+        belo e eterno. Confira abaixo os detalhes sobre o nosso grade dia.
       </p>
       <div>
         <div className="dayoff-details">
           <FaCalendarCheck size={70} color="#d1af83" />
           <h3>Detalhes do Evento</h3>
           <p>
-            <strong>Data:</strong> 16 de Abril de 2022
+            <strong>Data:</strong> {weddingDay.locale('pt-br').format('LL')}
           </p>
           <p>
-            <strong>Hora:</strong> 16hrs
+            <strong>Hora:</strong> {schedule}
           </p>
           <p>
-            <strong>Local:</strong> Rua Esmeraldas, 113 - Pedra Azul, Contagem -
-            MG
+            <strong>Local:</strong> {address}
           </p>
         </div>
         <div className="dayoff-details">
@@ -50,3 +53,9 @@ function Dayoff() {
 }
 
 export default Dayoff;
+
+Dayoff.propTypes = {
+  address: PropTypes.string.isRequired,
+  schedule: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+};

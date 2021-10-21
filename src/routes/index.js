@@ -2,12 +2,16 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import Route from './Route';
 
-import Home from '../pages/Home';
+import Wedding from '../pages/Wedding';
+import Landing from '../pages/Landing';
 
 export default function Routes() {
+  const { pathname } = window.location;
+
   return (
     <Switch>
-      <Route path="/" exact component={Home} />
+      <Route path="/" exact component={Landing} />
+      <Route path={`${pathname}`} component={Wedding} />
     </Switch>
   );
 }

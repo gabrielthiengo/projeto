@@ -1,122 +1,36 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-import { FaCartPlus } from 'react-icons/fa';
+import { FaGift } from 'react-icons/fa';
+import Modal from '~/components/Modal';
 
 import './styles.css';
 
-function Gifts() {
-  const [products, setProducts] = useState([
-    {
-      title: 'Máquina de lavar',
-      value: 1250.0,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Cafeteira',
-      value: 320.0,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Televisão',
-      value: 1599.9,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Micro-ondas',
-      value: 499.0,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Geladeira',
-      value: 2389.9,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Máquina de lavar',
-      value: 1250.0,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Cafeteira',
-      value: 320.0,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Televisão',
-      value: 1599.9,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Micro-ondas',
-      value: 499.0,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Geladeira',
-      value: 2389.9,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Máquina de lavar',
-      value: 1250.0,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Cafeteira',
-      value: 320.0,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Televisão',
-      value: 1599.9,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Micro-ondas',
-      value: 499.0,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-    {
-      title: 'Geladeira',
-      value: 2389.9,
-      img:
-        'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ4VlIU1zebDQN_9ey-8sHmHBF-xnJMf0h2KtAWvctTGF1WwapVfbX__iE2b4admFVJ1nBvEmH5ByJH&usqp=CAc',
-    },
-  ]);
+function Gifts({ products }) {
+  const [toggleModal, setToggleModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  function handleCloseModal() {
+    setToggleModal(!toggleModal);
+  }
+
+  function confirmCheckout() {}
 
   return (
     <div id="gifts" className="gift-container">
       <h2>Presentes</h2>
 
-      <p>
-        Aenean tristique eros eget facilisis pretium. Maecenas risus leo,
-        maximus nec faucibus vitae, varius non elit. Nunc eget nibh eget felis
-        tristique pretium. Duis sed condimentum neque.
-      </p>
+      <p>Faça parte da construção desse sonho, que tal presentear os noivos?</p>
 
       <div>
         {products.map(product => {
           return (
-            <div key={product.title} className="product-container">
-              <img src={product.img} alt="" />
+            <div key={product.Product.title} className="product-container">
+              <img src={product.Product.image} alt="" />
 
-              <h3>{product.title}</h3>
+              <h3>{product.Product.title}</h3>
               <span>
-                {product.value.toLocaleString('pt-BR', {
+                {product.Product.value.toLocaleString('pt-BR', {
                   style: 'currency',
                   currency: 'BRL',
                 })}
@@ -125,7 +39,7 @@ function Gifts() {
                 ou{' '}
                 <strong>
                   6x de{' '}
-                  {(product.value / 6).toLocaleString('pt-BR', {
+                  {(product.Product.value / 6).toLocaleString('pt-BR', {
                     style: 'currency',
                     currency: 'BRL',
                   })}
@@ -133,15 +47,32 @@ function Gifts() {
               </p>
               <br />
 
-              <button type="button">
-                <FaCartPlus /> Comprar
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedProduct(product.Product);
+                  setToggleModal(true);
+                }}
+              >
+                <FaGift /> Presentear
               </button>
             </div>
           );
         })}
       </div>
+      {toggleModal && (
+        <Modal
+          handleCloseModal={handleCloseModal}
+          confirmCheckout={confirmCheckout}
+          product={selectedProduct}
+        />
+      )}
     </div>
   );
 }
 
 export default Gifts;
+
+Gifts.propTypes = {
+  products: PropTypes.oneOfType([PropTypes.array]).isRequired,
+};

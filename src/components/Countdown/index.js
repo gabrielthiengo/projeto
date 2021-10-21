@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 
-function Countdown() {
+function Countdown({ date }) {
   const [time, setTime] = useState({
     days: '00',
     hours: '00',
@@ -14,7 +15,7 @@ function Countdown() {
   let interval = useRef();
 
   const startTimer = () => {
-    const countdown = new Date('Apr 16, 2022 00:00:00').getTime();
+    const countdown = new Date(date).getTime();
 
     interval = setInterval(() => {
       const currDate = new Date().getTime();
@@ -52,9 +53,9 @@ function Countdown() {
     <div id="countdown" className="countdown-container">
       <h2>Contagem Regressiva</h2>
       <p>
-        Aenean tristique eros eget facilisis pretium. Maecenas risus leo,
-        maximus nec faucibus vitae, varius non elit. Nunc eget nibh eget felis
-        tristique pretium. Duis sed condimentum neque.
+        Um casamento feliz é a junção de duas pessoas que se perdoam, se
+        compreendem e cooperam com todas as coisas sempre com muito amor. A
+        contagem regressiva já começou, fique atento!
       </p>
 
       <div className="countdown">
@@ -83,3 +84,7 @@ function Countdown() {
 }
 
 export default Countdown;
+
+Countdown.propTypes = {
+  date: PropTypes.string.isRequired,
+};

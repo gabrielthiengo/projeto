@@ -24,9 +24,11 @@
 
 .intro-container > div > h2 {
   font-family: 'Nunito', sans-serif !important;
-  font-size: 9.6rem;
+  font-size: 7rem;
   color: #444235!important;
   line-height: 1.3em;
+
+  text-align: center;
 }
 
 .intro-container > div > h4 {
@@ -56,9 +58,9 @@
   letter-spacing: 1.5px;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 1050px) {
   .intro-container > div > h2 {
-    font-size: 5.6rem;
+    font-size: 5rem;
   }
 
   .intro-container > div > h4 {
@@ -70,17 +72,18 @@
   }
 }
 
-@media (max-width: 455px) {
+@media (max-width: 760px) {
   .intro-container > div > h2 {
-    font-size: 3.6rem;
+    font-size: 3rem;
   }
 
   .intro-container > div > h4 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .intro-container > div > button {
     padding: 10px;
   }
 }
+
 
