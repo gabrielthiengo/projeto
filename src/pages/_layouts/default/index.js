@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
 import './styles.css';
 
 import Navbar from '~/components/Navbar';

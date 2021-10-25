@@ -86,16 +86,16 @@
   filter: brightness(90%);
 }
 
-.modal-container > .modal-content > .checkout > div > .container {
+.modal-container > .modal-content > .checkout > div > .content-block > .container {
   display: flex;
   align-items: center;
 }
 
-.modal-container > .modal-content > .checkout > div > .container + .container {
+.modal-container > .modal-content > .checkout > div > .content-block > .container + .container {
   margin-top: 15px;
 }
 
-.modal-container > .modal-content > .checkout > div > .container .input-block + .input-block {
+.modal-container > .modal-content > .checkout > div > .content-block > .container .input-block + .input-block {
   margin-left: 10px;
 }
 
@@ -103,4 +103,26 @@
   margin-top: 20px;
   padding: 10px;
   border: 1px solid #c4c4c4;
+}
+
+.content-block {
+  padding: 10px;
+  border: 1px solid var(--border);
+
+  position: relative;
+}
+
+.content-block + .content-block {
+  margin-top: 10px;
+}
+
+.content-block > p {
+  font-size: 1.3rem;
+  margin-top: -20px;
+  background: #fff;
+
+  padding-left: 7px;
+  padding-right: 7px;
+
+  position: absolute;
 }

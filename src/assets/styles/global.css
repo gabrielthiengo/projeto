@@ -114,8 +114,8 @@ a:hover {
 }
 
 .input-block > span {
-  font-size: 1.4rem;
-  margin-bottom: 5px;
+  font-size: 1.3rem;
+  font-family: 'Nunito', sans-serif !important;
 }
 
 .input-block > select,
@@ -129,6 +129,10 @@ a:hover {
   border: 1px solid #c4c4c4;
 
   transition: .2s;
+}
+
+.input-block > span > strong {
+  color: var(--red);
 }
 
 .input-block > select:focus,
