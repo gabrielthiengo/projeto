@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import cover from '~/assets/images/06.jpeg';
+
 import './styles.css';
 
 function Intro({ husband, wife, coverPhoto }) {
@@ -22,7 +24,7 @@ function Intro({ husband, wife, coverPhoto }) {
           Que tal presentea-los?
         </button>
       </div>
-      <img className="text-focus-in" src={coverPhoto} alt="cover" />
+      <img className="text-focus-in" src={cover} alt="cover" />
     </div>
   );
 }

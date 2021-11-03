@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import imgHe from '~/assets/images/02.jpeg';
+import imgShe from '~/assets/images/04.jpeg';
+
 import './styles.css';
 
 function About({ about, he, she, photoHe, photoShe }) {
@@ -16,13 +19,13 @@ function About({ about, he, she, photoHe, photoShe }) {
       </div>
       <div className="about-personal">
         <div className="about-detail">
-          <img src={photoHe} alt="" />
+          <img src={imgHe} alt="" />
           <h3>{he}</h3>
 
           <p>{about.about_he}</p>
         </div>
         <div className="about-detail">
-          <img src={photoShe} alt="" />
+          <img src={imgShe} alt="" />
           <h3>{she}</h3>
 
           <p>{about.about_she}</p>
