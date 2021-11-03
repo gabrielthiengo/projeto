@@ -47,6 +47,9 @@ function Confirmation({ weddingId }) {
           confirmed: true,
         });
         setListGuest([]);
+
+        document.getElementById('gifts').scrollIntoView();
+        toast.success('Que tal presentar os noivos?');
       })
       .catch(err => {
         toast.error(err.data.message);
@@ -97,9 +100,9 @@ function Confirmation({ weddingId }) {
           <button
             className="add-guest-button"
             type="button"
-            disabled={guest.name === '' && guest.lastName === ''}
+            disabled={guest.name === '' || guest.lastName === ''}
             onClick={() => {
-              if (guest.name !== '' && guest.lastName !== '') {
+              if (guest.name !== '' || guest.lastName !== '') {
                 handleAddGuest();
               }
             }}
