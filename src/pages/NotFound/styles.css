@@ -1,0 +1,38 @@
+.notfound-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.notfound-content > img {
+  width: 300px;
+  margin-bottom: 40px;
+}
+
+.notfound-content > p,
+strong {
+  font-size: 2rem;
+  letter-spacing: 1.3px;
+  text-align: center;
+}
+
+.notfound-content > strong {
+  font-size: 3rem;
+  color: var(--orange);
+}
+
+@media(max-width: 770px) {
+  .notfound-content > strong {
+    font-size: 2.5rem;
+  }
+  .notfound-content > p {
+    font-size: 1.5rem;
+  }
+}
+
+@media(max-width: 640px) {
+  .notfound-content > p {
+    max-width: 300px;
+  }
+}

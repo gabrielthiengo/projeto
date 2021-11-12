@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: 'https://servicodados.ibge.gov.br/api/v1/',
   headers: {
     'content-type': 'application/json',
   },

@@ -3,16 +3,9 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
 import DefaultLayout from '~/pages/_layouts/default';
-import AuthLayout from '~/pages/_layouts/auth';
 
-export default function RouteWrapper({
-  component: Component,
-  isPrivate,
-  isRegister,
-  ...rest
-}) {
-  const { pathname } = window.location;
-  const Layout = pathname !== '/' ? DefaultLayout : AuthLayout;
+export default function RouteWrapper({ component: Component, ...rest }) {
+  const Layout = DefaultLayout;
 
   return (
     <Route

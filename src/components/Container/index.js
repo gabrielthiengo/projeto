@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 
-function InputBlock({ children }) {
-  return <div className="input-block">{children}</div>;
+function Container({ children }) {
+  return <div className="container">{children}</div>;
 }
 
-export default InputBlock;
+export default Container;
 
-InputBlock.propTypes = {
+Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element]).isRequired,
 };

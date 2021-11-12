@@ -1,0 +1,29 @@
+.home-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.home-content > .container > header {
+  margin-bottom: 60px;
+}
+
+.home-content > .container > button {
+  width: 200px;
+  padding: 10px 15px;
+  border: 1px solid var(--green);
+  background: transparent;
+  color: var(--green);
+
+  text-transform: uppercase;
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.home-content > .container > button:hover {
+  color: var(--background);
+  background: var(--green);
+}
